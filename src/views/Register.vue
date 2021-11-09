@@ -69,7 +69,6 @@ export default {
             this.authFail = false;
             // si le register se passe bien, redirige vers la page login
             let data = JSON.parse(JSON.stringify(this.userInformation));
-            console.log(this.userInformation.data_in.birthday);
             AuthService.register(data).then(() => {
                 this.$router.push({ name: "Login"});
             }).catch((error) => { // sinon indique qu'il y a eu une erreur

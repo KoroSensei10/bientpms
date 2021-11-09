@@ -26,6 +26,7 @@
         <button v-on:click="updateData">
             Edit information
         </button>
+        <img :src="this.updatableData.profile_picture" alt="profile picture">
     </div>
 </template>
 
@@ -35,7 +36,12 @@ export default {
     name: 'Profile',
     data() {
         return {
-            userInfo: {},
+            userInfo: {
+                username: '',
+                email: '',
+                is_superuser: false,
+                sign_up_data: ''
+            },
             updatableData: {},
             postcode: '',
             error: false,
@@ -65,7 +71,7 @@ export default {
     },
     beforeCreate() {
         if (!this.isAuthenticated) {
-            this.logout();
+            this.logout;
         }
     },
     beforeMount() {

@@ -41,6 +41,7 @@ export default {
             this.loading = true;
             this.authFail = false;
             const userData = {username : this.user.username, password : this.user.password}
+            
             this.$store.dispatch('login', userData).then(() => {
                 this.$router.push({ name: "Profile"});
             }).catch((error) => {
