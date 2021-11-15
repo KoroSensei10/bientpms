@@ -1,55 +1,108 @@
 <template>
-    <div>
-        <form name="loginForm" @submit.prevent="login">
-            <input v-model="this.user.username" type="text" name="login" id="login" placeholder="Entrez votre username ici">
-            <input v-model="this.user.password" type="password" name="password" id="password" placeholder="Entrez votre mot de passe ici">
-            <button type="submit">Se connecter</button>
+  <div class="container .d-flex .justify-content-center .position-absolute">
+    <div
+      class="in-container .d-flex .justify-content-center .align-self-center"
+    >
+      <div class="form-group .align-items-center .align-self-center">
+        <!-- en-tête du formulaire -->
+        <header class="myHed .text-center">
+          <p>Se connecter</p>
+        </header>
+        <!-- formulaire de connexion -->
+        <form
+          class="main-form .text-center"
+          name="loginForm"
+          @submit.prevent="login"
+        >
+          <div class="form-group my-0">
+            <label class="my-0">
+              <i class="fas fa-user"></i>
+              <input
+                v-model="this.user.username"
+                class="myInput"
+                type="email"
+                name="login"
+                id="login"
+                placeholder="E-mail/Nom d'utilisateur"
+                required
+              />
+            </label>
+          </div>
+          <div class="form-group my-0">
+            <label class="my-0">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                class="myInput"
+                placeholder="Mot de Passe"
+                required
+              />
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <button class="form-control button" type="submit">
+                Se connecter
+              </button>
+            </label>
+          </div>
+          <span class="check_1"> <a href="">Mot de passe oublié ?</a></span>
         </form>
-    <div v-if="authFail">
-        <strong>{{ this.message }}</strong>
+        <div v-if="authFail">
+          <strong>{{ this.message }}</strong>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="bottom-decoration">
     </div>
 </template>
 
 <script>
-
+require("../assets/login.css");
 export default {
-    name: "Login",
-    data() {
-        return {
-            loading: false,
-            user: {
-                username: "",
-                password: "" 
-            },
-            authFail: false,
-            message: ""
-        };
+  name: "Login",
+  data() {
+    return {
+      loading: false,
+      user: {
+        username: "",
+        password: "",
+      },
+      authFail: false,
+      message: "",
+    };
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated;
     },
-    computed: {
-        isAuthenticated() {
-            return this.$store.state.isAuthenticated;
-        }
-    },
-    created() {
-        if (this.isAuthenticated) {
-            this.$router.push('/profile');
-        }
-    },
-    methods: {
-        login() {
-            this.loading = true;
-            this.authFail = false;
-            const userData = {username : this.user.username, password : this.user.password}
-            
-            this.$store.dispatch('login', userData).then(() => {
-                this.$router.push({ name: "Profile"});
-            }).catch((error) => {
-                this.loading = false;
-                this.authFail = true;
-                this.message = error.message || error;
-            })
-        }
+  },
+  created() {
+    if (this.isAuthenticated) {
+      this.$router.push("/profile");
     }
-}
+  },
+  methods: {
+    login() {
+      this.loading = true;
+      this.authFail = false;
+      const userData = {
+        username: this.user.username,
+        password: this.user.password,
+      };
+
+      this.$store
+        .dispatch("login", userData)
+        .then(() => {
+          this.$router.push({ name: "Profile" });
+        })
+        .catch((error) => {
+          this.loading = false;
+          this.authFail = true;
+          this.message = error.message || error;
+        });
+    },
+  },
+};
 </script>

@@ -1,10 +1,62 @@
 <template>
-    <div>
-        <h1>Formulaire d'inscription</h1>
-        <form @submit.prevent="register">
-            <input type="text" name="username" id="username" v-model="this.userInformation.account_in.username">Username
-            <input type="email" name="email" id="email" v-model="this.userInformation.account_in.email">Email
-            <input type="password" name="password" id="password" v-model="this.userInformation.account_in.password">Password
+<div class=" container.d-flex .justify-content-center .position-absolute ">
+        <div class= " in-container .d-flex .justify-content-center .align-self-center">
+            <div class="form-group .align-items-center .align-self-center">
+                
+                  <header class="myHed .text-center ">
+                      <p>S'inscrire</p>
+                  </header>
+
+                 
+                  <form @submit.prevent="register" action="Register2.html" class="main-form .text-center">
+                      <div class="form-group my-0 ">
+                          <label class="my-0">
+                              <i class="fas fa-user"></i>
+                              <input class="myInput" type="contact" name="username" id="username"  placeholder="Pseudo * " v-model="this.userInformation.account_in.username" required> 
+                          </label>
+                      </div>
+                      <div class="form-group my-0">
+                        <label class="my-0">
+                            <i class="fas fa-envelope"></i>
+                            <input class="myInput" type="email" name="email" placeholder="Adresse e-mail *"  id="email" v-model="this.userInformation.account_in.email">
+                            <div class="text m-1">
+                                <p>Un e-mail de confirmation vous sera envoyé.</p>
+                            </div>
+                        
+                        </label>
+                        
+                    </div>
+                    
+                    
+                    <div class="form-group my-0">
+                        <label class="my-0">
+                            <i class="fas fa-lock"></i>
+                            <input  class="myInput" type="password" name="password" id="password" placeholder="Mot de passe *" v-model="this.userInformation.account_in.password">   
+                        </label>
+                    </div>
+
+                    
+                  <div class ="m-4">
+                    <div class="form-group">
+                        <label>
+                            <input type="submit" class="form-control button" value="Continuer" > 
+                        </label>
+                    </div>
+
+                </div> 
+                    <span class="check_1">Déjà un compte ?</span>
+                  </form> 
+                   <div>
+            {{ this.message }}
+        </div>
+                            
+              </div>
+           </div>
+      </div>
+      <div class="bottom-decoration">
+      </div>
+          <!--
+    </div>
 
             <input type="text" name="first_name" id="first_name" v-model="this.userInformation.data_in.first_name">First Name
             <input type="text" name="last_name" id="last_name" v-model="this.userInformation.data_in.last_name">Last name
@@ -14,14 +66,14 @@
             <input type="radio" name="gender" id="man" value="m" v-model="this.userInformation.data_in.gender">Man
             <input type="radio" name="gender" id="woman" value="f" v-model="this.userInformation.data_in.gender">Woman
             <button type="submit">Sign up</button>
-        </form>
         <div>
             {{ this.message }}
         </div>
-    </div>
+-->
 </template>
 
 <script>
+require("../assets/register.css");
 import AuthService from '../services/auth.service.js'
 export default {
     name: "Register",
