@@ -23,6 +23,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  overflow: hidden;
 }
 
 #nav {
@@ -37,4 +38,17 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.bottom-decoration {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    max-height: 20vh;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    z-index: -1;
+}
+
 </style>

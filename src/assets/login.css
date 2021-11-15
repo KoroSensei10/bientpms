@@ -86,18 +86,6 @@ body {
     cursor: pointer;
 }
 
-.bottom-decoration {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 200px;
-    max-height: 20vh;
-    background-image: linear-gradient(to right, #0084ff, #00f2ff);
-    z-index: -1;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
 .bottom-decoration::after {
     --round: 20vh;
     content: '';

@@ -1,12 +1,11 @@
 <template>
-  <div class="container .d-flex .justify-content-center .position-absolute">
-    <div
-      class="in-container .d-flex .justify-content-center .align-self-center"
-    >
+  <div class="container-fluid .d-flex .justify-content-center">
+    <div class="in-container .d-flex .justify-content-center .align-self-center">
       <div class="form-group .align-items-center .align-self-center">
         <!-- en-tête du formulaire -->
         <header class="myHed .text-center">
           <p>Se connecter</p>
+          <img src="/images/tpms.ico" alt="logo">
         </header>
         <!-- formulaire de connexion -->
         <form
@@ -20,7 +19,7 @@
               <input
                 v-model="this.user.username"
                 class="myInput"
-                type="email"
+                type="text"
                 name="login"
                 id="login"
                 placeholder="E-mail/Nom d'utilisateur"
@@ -35,6 +34,7 @@
                 type="password"
                 class="myInput"
                 placeholder="Mot de Passe"
+                v-model="this.user.password"
                 required
               />
             </label>
@@ -51,11 +51,14 @@
         <div v-if="authFail">
           <strong>{{ this.message }}</strong>
         </div>
+        <div class="spinner-border text-info" v-if="loading" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
       </div>
     </div>
   </div>
   <div class="bottom-decoration">
-    </div>
+  </div>
 </template>
 
 <script>
