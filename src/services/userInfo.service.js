@@ -1,5 +1,8 @@
 const API_URL = "http://157.90.237.150/api/v1/";
 
+/*
+ * Classe pour récupérer les données de l'utilisateur 
+ */
 class UserInformation{
     // récupère les infos sur l'utilisateur courant
     async getBasicInformation() {
@@ -17,6 +20,7 @@ class UserInformation{
         return data
     }
 
+    // Récupère les détails sur l'utilisateur courant (firstName, lastName, about, postcode)
     async getMoreInformation() {
         const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
         const requestOptions = {
@@ -32,6 +36,7 @@ class UserInformation{
         return Promise.resolve(data);
     }
 
+    // Met à jour les informations de l'utilisateur
     async updateProfileInformation(newInformation) {
         const headers = {"Authorization": "Bearer " + localStorage.getItem('token'), "Content-Type": "application/json"};
         const requestOptions = {

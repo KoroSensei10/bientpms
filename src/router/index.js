@@ -40,25 +40,4 @@ const router = createRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   const publicPages = ['/Login', '/Register', '/Accueil', '/'];
-//   const authRequired = !publicPages.includes(to.path);
-//   if (!authRequired){
-//     next();
-//   }
-//   // si il faut une autorisation (style page profile) ET que le mec n'est pas connécté
-//   else if (authRequired && !createStore.state.isAuthenticated){
-//     next({ name: 'Login' })
-//   }
-//   /*
-//   En gros le else il fait quoi :
-//   Déjà on entre dans le quand on veut accéder à une page privé (style profile) ET que l'appli nous considère comme connecté
-//   - Donc on vérifie en premier lieu que le token qui sert pour se co est bien valable
-//    - si il l'est pas ça nous déco et nous envoi sur la page de login
-//   - Et après ça vérifie si il y a bien les informations principale dans le store localStorage
-//    - si il n'y a rien (cas de première connexion par exemple) ça les ajoutes
-//    - si il y a une errer -> déco et push sur /Login
-//   */
-// })
-
 export default router
