@@ -1,10 +1,20 @@
 <template>
-  <div id="nav">
+  <div id="nav" v-if="!isAuthenticated">
     <router-link to="/">Accueil</router-link> |
     <router-link to="/about">About</router-link>
   </div>
   <router-view/>
 </template>
+
+<script>
+export default {
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated;
+    }
+  }
+}
+</script>
 
 <style>
 #app {

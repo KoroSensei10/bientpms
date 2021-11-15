@@ -1,5 +1,9 @@
 const API_URL = "http://157.90.237.150/api/v1/";
 
+/*
+ * Ici c'est la classe qui gère le login et la création de compte
+ * Pour les erreurs c'est fait directement par Liam dans le body.detail
+ */
 class AuthService {
     // Envoi l'username et le mot de passe pour recevoir un token
     async login(userInfo) {
