@@ -1,6 +1,6 @@
-<template>
-  <div class="container-fluid .d-flex .justify-content-center">
-    <div class="in-container .d-flex .justify-content-center .align-self-center">
+<template  class=".flex-lg-fill .d-flex .flex-row">
+  <div class=".container-fluid .flex-xl-fill .d-flex .flex-row .justify-content-center">
+    <div class="in-container-fluid .d-flex .justify-content-center .align-self-center">
       <div class="form-group .align-items-center .align-self-center">
         <!-- en-tête du formulaire -->
         <header class="myHed .text-center">
@@ -39,6 +39,7 @@
               />
             </label>
           </div>
+          <hr noshade="1" width="100%" size="">
           <div class="form-group">
             <label>
               <button class="form-control button" type="submit">

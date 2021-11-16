@@ -136,10 +136,6 @@ body {
     align-items: center;
 }
 
-div i {
-    font-size: 30px;
-}
-
 @media (min-height: 700px) {
     .image {
         max-width: 200px;
