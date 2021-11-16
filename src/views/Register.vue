@@ -99,6 +99,7 @@
                   type="number"
                   name="postcode"
                   id="postcode"
+                  placeholder="code postal"
                   v-model="this.userInformation.data_in.postcode"
                   required
                 />
@@ -113,6 +114,7 @@
                   name="birthdate"
                   id="birthdate"
                   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                  placeholder="Date de naissance"
                   v-model="this.userInformation.data_in.birthday"
                   required
                 />
