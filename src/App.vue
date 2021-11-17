@@ -5,7 +5,8 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view />
-    <VueBottomNavigation value="1" :options="options" v-model="selected" />
+    <!-- Affiche la NavBar que quand la personne est loggedin -->
+    <VueBottomNavigation v-if="isAuthenticated" value="1" :options="options" v-model="selected" />
   </div>
 </template>
 
@@ -19,10 +20,28 @@ export default {
   data: () => ({
       selected: 1,
       options: [
-        { id: 1, icon: "fa fa-home", title: "Home" },
-        { id: 2, icon: "fa fa-coffee", title: "Meet" },
-        { id: 3, icon: "fa fa-cog", title: "Settings" },
-        { id: 5, icon: "fa fa-bell", title: "Messages" },
+        { id: 1, icon: "fa fa-home", title: "Home", path: {name: "Home"} },
+        // { id: 2, icon: "fa fa-coffee", title: "Meet" },
+        { 
+          id: 3, 
+          icon: "fa fa-cog", 
+          title: "Settings", 
+          childs: [
+            {
+              id: 301,
+              icon: "fa fa-calendar-check",
+              title: "Vos Activités",
+              path: {name: "UserActivities"}
+            },
+            { 
+              id: 302,
+              icon: "fa fa-user",
+              title: "Vous",
+              path: {name: "Profile"}
+            }
+          ]
+        },
+        // { id: 4, icon: "fa fa-bell", title: "Messages" },
       ],
   }),
   computed: {
