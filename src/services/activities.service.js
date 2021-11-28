@@ -1,0 +1,54 @@
+const API_URL = "http://157.90.237.150/api/v1/";
+
+/*
+ * class pour gérer toutes les requêtes en lien avec les activités 
+*/
+
+class GestionActivities{
+    // Recup les activités de l'user courant.
+    async getActiveUserActivities(activitiesRequestInfo){
+        const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
+        const requestOptions = {
+            headers: headers,
+            method: 'GET',
+        }
+        const response = await fetch(API_URL + 'activity/me?' + new URLSearchParams(activitiesRequestInfo).toString(), requestOptions);
+        const data = await response.json();
+        if (!response.ok){
+            const error = (data) || response.status;
+            return Promise.reject(error);
+        }
+        return data
+    }
+
+    async getActivitiesBySearch(activitiesRequestInfo) {
+        const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
+        const requestOptions = {
+            headers: headers,
+            method: 'GET',
+        }
+        const response = await fetch(API_URL + 'activity?' + new URLSearchParams(activitiesRequestInfo).toString(), requestOptions);
+        const data = await response.json();
+        if (!response.ok){
+            const error = (data) || response.status;
+            return Promise.reject(error);
+        }
+        return data
+    }
+
+    async createActivity(activitiesInfo) {
+        const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
+        const requestOptions = {
+            headers: headers,
+            method: 'POST',
+            body: JSON.stringify(activitiesInfo)
+        };
+        const response = await fetch(API_URL + 'activity/me', requestOptions);
+        const data = await response.json();
+        if (!response.ok){
+            const error = (data) || response.status;
+            return Promise.reject(error);
+        }
+        return data
+    }
+}

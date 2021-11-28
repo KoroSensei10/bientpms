@@ -14,13 +14,7 @@
 </template>
 
 <script>
-const home = Vue.createApp({})
-home.component('search-bar',{
-  data(){
-
-  }
+export default {
+    
 }
-)
-
 </script>
-

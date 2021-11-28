@@ -1,19 +1,55 @@
 <template>
-  <div id="nav" v-if="!isAuthenticated">
-    <router-link to="/">Accueil</router-link> |
-    <router-link to="/about">About</router-link>
+  <div ip="app">
+    <div id="nav" v-if="!isAuthenticated" class="flex-grow-1">
+      <router-link to="/">Accueil</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view />
+    <!-- Affiche la NavBar que quand la personne est loggedin -->
+    <VueBottomNavigation v-if="isAuthenticated" value="1" :options="options" v-model="selected" />
   </div>
-  <router-view/>
 </template>
 
 <script>
+import VueBottomNavigation from "bottom-navigation-vue";
 export default {
+  name: "App",
+  components: {
+    VueBottomNavigation,
+  },
+  data: () => ({
+      selected: 1,
+      options: [
+        { id: 1, icon: "fa fa-home", title: "Home", path: {name: "Home"} },
+        // { id: 2, icon: "fa fa-coffee", title: "Meet" },
+        { 
+          id: 3, 
+          icon: "fa fa-cog", 
+          title: "Settings", 
+          childs: [
+            {
+              id: 301,
+              icon: "fa fa-calendar-check",
+              title: "Vos Activités",
+              path: {name: "UserActivities"}
+            },
+            { 
+              id: 302,
+              icon: "fa fa-user",
+              title: "Vous",
+              path: {name: "Profile"}
+            }
+          ]
+        },
+        // { id: 4, icon: "fa fa-bell", title: "Messages" },
+      ],
+  }),
   computed: {
     isAuthenticated() {
       return this.$store.state.isAuthenticated;
     }
   }
-}
+};
 </script>
 
 <style>
@@ -40,15 +76,14 @@ export default {
 }
 
 .bottom-decoration {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 200px;
-    max-height: 20vh;
-    background-image: linear-gradient(to right, #0084ff, #00f2ff);
-    overflow-y: hidden;
-    overflow-x: hidden;
-    z-index: -1;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  max-height: 20vh;
+  background-image: linear-gradient(to right, #0084ff, #00f2ff);
+  overflow-y: hidden;
+  overflow-x: hidden;
+  z-index: -1;
 }
-
 </style>
