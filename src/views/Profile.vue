@@ -1,15 +1,15 @@
 <template>
     <div class="d-flex flex-column justify-content-between">
-        <div class="haut mb-5">
+        <div class="haut mb-5 flex-grow-1">
             <div class="gris_haut"></div> 
-            <div class="modifier">Modifier</div>
-            <div v-on:click="logout" class="deconnexion">Déconnexion</div>
+            <button type="button" class="btn btn-outline-danger modifier">Edit</button>
+            <button v-on:click="logout" class="btn btn-outline-dark deconnexion">Logout</button>
             <div class="profil">{{ this.userInfo.username }}</div>
             <div class="avatar">
                 <img class="profile-picture" :src="this.updatableData.profile_picture" alt="profile picture">
             </div>
         </div>
-        <form class="milieu flex-grow-1 d-flex flex-column text-center" @submit.prevent="updateData">
+        <form class="d-flex flex-column align-self-center flex-grow-1" @submit.prevent="updateData">
             <div class="mb-3">
                 <label for="about">Description</label>
                 <input type="text" name="about" id="about" v-model="this.updatableData.about"
@@ -120,16 +120,6 @@ export default {
     grid-row-end: 4;
     border-style: none;
     background-color: #fff;
-}
-
-.milieu {
-    flex-basis: 0;
-    flex-grow: 6.2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 80px;
 }
 
 .nom {
