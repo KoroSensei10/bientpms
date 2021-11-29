@@ -11,7 +11,7 @@
     
   </div>
   <div class="d-flex flex-sm-column" v-if="activities">
-    <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity"/>
+    <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity" :participant="true"/>
   </div>
   <div
       class="card ui fluid"
