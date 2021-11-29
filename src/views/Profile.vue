@@ -2,37 +2,49 @@
     <div class="d-flex flex-column justify-content-between">
         <div class="haut mb-5 flex-grow-1">
             <div class="gris_haut"></div> 
-            <button type="button" class="btn btn-outline-danger modifier">Edit</button>
+            <button @click="disableEdit = !disableEdit" type="button" class="btn btn-outline-danger modifier">Edit</button>
             <button v-on:click="logout" class="btn btn-outline-dark deconnexion">Logout</button>
             <div class="profil">{{ this.userInfo.username }}</div>
             <div class="avatar">
                 <img class="profile-picture" :src="this.updatableData.profile_picture" alt="profile picture">
             </div>
         </div>
+        <div v-if="infoUpdated" class="alert alert-success align-self-center" role="alert">
+            Vos informations ont bien étaient mise à jour.
+        </div>
+        <div v-if="error" class="alert alert-danger align-self-center" role="alert">
+            {{ this.message }}
+        </div>
+        <div v-if="this.userInfo.is_superuser" class="alert alert-primary align-self-center" role="alert">
+                Vous êtes administrateur de cette application. &lsaquo;3
+        </div>
         <form class="d-flex flex-column align-self-center flex-grow-1" @submit.prevent="updateData">
             <div class="mb-3">
-                <label for="about">Description</label>
+                <label for="about" class="form-label">Description</label>
                 <input type="text" name="about" id="about" v-model="this.updatableData.about"
-                minlength="0" maxlength="300" class="description form-control"/>
+                minlength="0" maxlength="300" class="form-control" :disabled="disableEdit"/>
             </div>
             <div class="mb-3">
-                <label for="last_name">Last Name</label>
+                <label for="last_name" class="form-label">Last Name</label>
                 <input type="text" name="last_name" id="last_name" 
-                v-model="this.updatableData.last_name" minlength="4" maxlength="50" size="10" class="nom form-control"/>
+                v-model="this.updatableData.last_name" minlength="4" maxlength="50" size="10" class="form-control" :disabled="disableEdit"/>
             </div>
 
             <div class="mb-3">
-                <label for="first_name">First Name</label>
+                <label for="first_name" class="form-label">First Name</label>
                 <input type="text" name="first_name" id="first_name" 
-                v-model="this.updatableData.first_name" minlength="4" maxlength="50" size="10" class="form-control"/>
+                v-model="this.updatableData.first_name" minlength="4" maxlength="50" size="10" class="form-control" :disabled="disableEdit"/>
             </div>
 
-            <input type="text" name="postcode" id="postcode" v-model="this.updatableData.postcode"
-            minlength="3" maxlength="5" size="10"/>
+            <div class="mb-3">
+                <label for="postcode" class="form-label">Postcode</label>
+                <input type="text" name="postcode" id="postcode" v-model="this.updatableData.postcode"
+                minlength="3" maxlength="5" size="10" class="form-control" :disabled="disableEdit"/>
+            </div>
 
-            <div class="age">{{ this.updatableData.birthday }}</div>
+            <div class="age mb-3">{{ this.updatableData.birthday }}</div>
         </form>
-        <button type="button" class="btn btn-primary align-self-center" v-on:click="updateData">
+        <button type="button" class="btn btn-primary align-self-center" v-on:click="updateData" v-if="!disableEdit">
             Edit information
         </button>
         <div v-if="infoUpdated || error">
@@ -57,7 +69,8 @@ export default {
             postcode: '',
             error: false,
             infoUpdated: false,
-            message: ""
+            message: "",
+            disableEdit: true
         }
     },
     computed: {
@@ -90,6 +103,8 @@ export default {
             this.userInfo = data;
             UserInformation.getMoreInformation().then((info) => {
                 this.updatableData = info;
+                this.infoUpdated = true;
+                setTimeout(() => this.infoUpdated = false, 3000);
             }).catch((error) => {
                 this.error = true;
                 this.message = error;
@@ -105,7 +120,7 @@ export default {
 <style>
 .haut {
     flex-basis: 0;
-    flex-grow: 2.8;
+    flex-grow: 3;
     display: grid;
     grid-template-columns: 25% 50% 25%;
     grid-template-rows: 1fr 1fr 1fr;
@@ -122,17 +137,7 @@ export default {
     background-color: #fff;
 }
 
-.nom {
-    margin-right: 10px;
-    margin-left: 10px;
-    font-size: calc(24px + 0.5vw);
-    font-weight: 600;
-}
-
 .age {
-    margin-right: 10px;
-    margin-left: 10px;
-    font-size: calc(13px + 0.5vw);
     font-style: italic;
 }
 
@@ -147,28 +152,6 @@ export default {
     margin-top: 30px;
     margin-bottom: 10px;
     font-size: calc(16px + 0.5vw);
-}
-
-.description {
-    flex-basis: 0;
-    flex-grow: 5;
-    text-align: center;
-    margin-right: 10px;
-    margin-left: 10px;
-    font-size: calc(16px + 0.5vw);
-}
-
-.bas {
-    flex-basis: 0;
-    display: flex;
-    flex-direction: row;
-    border-style: none;
-    background: linear-gradient(to right, #0084ff, #00f2ff);
-    min-height: 50px;
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
 }
 
 .modifier {
