@@ -19,7 +19,7 @@
 
 <script>
 export default {
-    name: Activity,
+    name: "Activity",
     props: {
         activityInfo: Object,
     }
