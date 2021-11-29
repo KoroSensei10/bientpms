@@ -10,12 +10,15 @@
     <i class="search icon"></i>
     
   </div>
-  <Activity
+  <div class="d-flex flex-sm-column" v-if="activities">
+    <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity"/>
+  </div>
+  <div
       class="card ui fluid"
       v-for="product in products"
       :key="product.id"
-      style="margin: 0"
-    />
+      style="margin: 0">
+    </div>
 </template>
 
 <script>
