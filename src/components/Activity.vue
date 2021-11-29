@@ -5,7 +5,7 @@
     pour avoir toutes les infos de l'activité regarde sur l'api de Liam http://157.90.237.150/docs#/activity/read_activities_api_v1_activity_get (dans l'onglet réponse)-->
     <div>
         <div class= ".card">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="" class="card-img-top" alt="...">
             <div class= ".card-body">
                  <h5 class="card-title">{{ this.activityInfo.title }}</h5>
                  <p class="card-date"> {{ this.activityInfo.event_date }}</p>
