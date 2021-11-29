@@ -1,10 +1,21 @@
 <template>
-    <div>
+    <!-- <div>
         <h1>La page Home wesh</h1>
         <div class="d-flex flex-sm-column" v-if="activities">
             <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity"/>
         </div>
-    </div>
+    </div> -->
+  <div class="ui icon input" style="width: 100%">
+    <input type="text" placeholder="Search..." />
+    <i class="search icon"></i>
+    
+  </div>
+  <Activity
+      class="card ui fluid"
+      v-for="product in products"
+      :key="product.id"
+      style="margin: 0"
+    />
 </template>
 
 <script>
