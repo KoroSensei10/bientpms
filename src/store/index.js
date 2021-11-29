@@ -1,8 +1,9 @@
 import { createStore } from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 import AuthService from '../services/auth.service.js'
 import UserInformation from '../services/userInfo.service'
 
-const initialState = {isAuthenticated: false, access_token: null, userInformation: {}};
+const initialState = localStorage.getItem('token') ? {isAuthenticated: true, access_token: localStorage.getItem('token'), userInformation: localStorage.getItem('basicInfo')} : {isAuthenticated: false, access_token: null, userInformation: {}}
 
 export default createStore({
   state: initialState,
@@ -41,6 +42,7 @@ export default createStore({
     async setBasicInformation({ commit }) {
       return await UserInformation.getBasicInformation().then((data) => {
         commit('SET_BASIC_INFO', data)
+        localStorage.setItem('basicInfo', data);
         return Promise.resolve(data);
       }).catch((error) => {
         return Promise.reject(error);
@@ -48,5 +50,6 @@ export default createStore({
     }
   },
   modules: {
-  }
+  },
+  plugins: [createPersistedState()]
 })

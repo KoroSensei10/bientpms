@@ -84,7 +84,7 @@ export default {
   },
   created() {
     if (this.isAuthenticated) {
-      this.$router.push("/profile");
+      this.$router.push({ name: "Home" });
     }
   },
   methods: {
@@ -95,11 +95,9 @@ export default {
         username: this.user.username,
         password: this.user.password,
       };
-
-      this.$store
-        .dispatch("login", userData)
+      this.$store.dispatch("login", userData)
         .then(() => {
-          this.$router.push({ name: "Profile" });
+          this.$router.push({ name: "Home" });
         })
         .catch((error) => {
           this.loading = false;

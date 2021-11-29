@@ -218,7 +218,7 @@ export default {
   created() {
     // si le mec est connécté il est redirigé vers la page profile
     if (this.isAuthenticated) {
-      this.$router.push("/profile");
+      this.$router.push({ name: "Home" });
     }
   },
   methods: {
