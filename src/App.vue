@@ -78,12 +78,13 @@ export default {
 .bottom-decoration {
   position: absolute;
   bottom: 0;
+  margin-bottom: 0px;
   width: 100%;
   height: 200px;
   max-height: 20vh;
   background-image: linear-gradient(to right, #0084ff, #00f2ff);
   overflow-y: hidden;
   overflow-x: hidden;
-  z-index: -1;
+  z-index: -1000;
 }
 </style>
