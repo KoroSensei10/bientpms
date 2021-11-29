@@ -52,3 +52,5 @@ class GestionActivities{
         return data
     }
 }
+
+export default new GestionActivities;
