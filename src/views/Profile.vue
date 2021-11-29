@@ -44,12 +44,9 @@
 
             <div class="age mb-3">{{ this.updatableData.birthday }}</div>
         </form>
-        <button type="button" class="btn btn-primary align-self-center" v-on:click="updateData" v-if="!disableEdit">
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-primary align-self-center" v-on:click="updateData" v-if="!disableEdit">
             Edit information
         </button>
-        <div v-if="infoUpdated || error">
-            {{ this.message }}
-        </div>
     </div>
 </template>
 
@@ -84,9 +81,10 @@ export default {
             this.$router.push('/');
         },
         updateData() {
-            console.log(this.updatableData);
             UserInformation.updateProfileInformation(this.updatableData).then((data) => {
                 this.updatableData = data;
+                this.infoUpdated = true;
+                setTimeout(() => this.infoUpdated = false, 3000);
             }).catch((error) => {
                 this.error = true;
                 this.message = error;
@@ -103,8 +101,6 @@ export default {
             this.userInfo = data;
             UserInformation.getMoreInformation().then((info) => {
                 this.updatableData = info;
-                this.infoUpdated = true;
-                setTimeout(() => this.infoUpdated = false, 3000);
             }).catch((error) => {
                 this.error = true;
                 this.message = error;
