@@ -7,7 +7,7 @@
 <script>
 import Activity from "../components/Activity.vue"
 export default {
-    name: UserActivities,
+    name: "UserActivities",
     components: {
         Activity
     },
