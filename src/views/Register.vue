@@ -105,7 +105,7 @@
                 />
               </label>
             </div>
-            <div class="form-group my-0">
+            <div class="form-group my-0 mb-2">
               <label class="my-0">
                   <i class="fas fa-user"></i>
                 <input
@@ -120,9 +120,15 @@
                 />
               </label>
             </div>
-            <div class="form-group my-0">
-                <input class="myInput" type="radio" name="gender" id="man" value="m" v-model="this.userInformation.data_in.gender">Man
-                <input class="myInput" type="radio" name="gender" id="woman" value="f" v-model="this.userInformation.data_in.gender">Woman
+            <div>
+              <div class="form-check form-check-inline my-0 ">
+              <input class="form-check-input" type="radio" name="gender" id="man" value="m" v-model="this.userInformation.data_in.gender">
+              <label class="form-check-label" for="inlineRadio1">Homme</label>
+            </div>
+            <div class="form-check form-check-inline my-0 ">
+              <input class="form-check-input" type="radio" name="gender" id="women" value="f" v-model="this.userInformation.data_in.gender">
+              <label class="form-check-label" for="inlineRadio1">Femme</label>
+            </div>
             </div>
           </div>
           <!-- Fin de la seconde partie de l'inscription -->
@@ -173,12 +179,14 @@
         </div>
       </div>
     </div>
+    <div v-if="inscriptionValide" class="alert alert-success align-self-center" role="alert">
+        Vous vous êtes bien inscrit, mais vous devez vérifier votre email avant de pouvoir vous connecter.
+      </div>
   </div>
   <div class="bottom-decoration"></div>
 </template>
 
 <script>
-require("../assets/register.css");
 import AuthService from "../services/auth.service.js";
 export default {
   name: "Register",
@@ -186,6 +194,7 @@ export default {
     return {
       suite: true,
       loading: false,
+      inscriptionValide: false,
       // L'objet qui va contenir toutes les infos de l'utilisateur
       userInformation: {
         account_in: {
@@ -230,7 +239,7 @@ export default {
       let data = JSON.parse(JSON.stringify(this.userInformation));
       AuthService.register(data)
         .then(() => {
-          this.$router.push({ name: "Login" });
+          this.inscriptionValide = true;
         })
         .catch((error) => {
           // sinon indique qu'il y a eu une erreur
@@ -248,5 +257,71 @@ input {
   display: block;
   text-align: center;
   left: 50%;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+.in-container {
+    min-height: 99%;
+    padding: none;
+    min-width: 100%;
+    width: 100%;
+}
+
+.myHed {
+    margin-top: 10px;
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.fas {
+    position: relative;
+    display: block;
+    left: -87px;
+    top: 30px;
+    color: rgb(255, 255, 255);
+}
+
+.button {
+    margin-top: 10px;
+    width: 250px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.myInput {
+    width: 220px;
+    padding: 10px;
+    padding-left: 40px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #0084ff, #00f2ff);
+    color: #fff;
+    border: none;
+    display: block;
+}
+
+.check_1 {
+    font-weight: 500;
+    color: rgb(85, 85, 85);
+    font-size: 13px;
+    margin: 15px auto;
+    cursor: pointer;
+}
+
+.text {
+    font-size: 55%;
+    color: #746f6f;
+}
+
+
+.grey option {
+    background-color: rgb(115, 115, 119);
 }
 </style>
