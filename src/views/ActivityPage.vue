@@ -17,7 +17,7 @@
         </div>
         <div class="mb-3">
             <label for="sport" class="form-label">Sport</label>
-            <input type="text" name="sport" id="sport" :value="this.activity.sport.name" disabled>
+            <input type="text" name="sport" id="sport" v-model="this.activity.sport.name" disabled>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
