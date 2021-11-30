@@ -11,7 +11,7 @@
       <div class=".row">
         <div class="card .h-100 .shadow-sm">
           <img
-            src="../images/foot.jpg"
+            :src="this.activityInfo.sport.image"
             class="card-img-top"
             alt="image du sport"
           />
@@ -21,7 +21,7 @@
                 this.activityInfo.levels.level
               }}</span>
             </div>
-            <h5 class="card-title">Tournoi de foot</h5>
+            <h5 class="card-title">{{ this.activityInfo.titlr }}</h5>
             <p class="card-date">{{ this.activityInfo.event_date }}</p>
             <p class="card-cp">{{ this.activityInfo.postcode }}</p>
             <p class="card-sport">{{ this.activityInfo.sport.name }}</p>
