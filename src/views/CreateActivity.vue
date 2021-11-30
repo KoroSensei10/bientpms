@@ -155,6 +155,12 @@
         Créer cette activité
       </button>
     </div>
+    <SwappingSquaresSpinner class=""
+      v-if="loading"
+      :animation-duration="1000"
+      :size="65"
+      color="#ff1d5e"
+    />
   </form>
   <div v-if="this.message" class="alert alert-success" role="alert">
     L'activité a bien été créée !
@@ -166,8 +172,12 @@
 
 <script>
 import GestionActivities from "../services/activities.service.js";
+import { SwappingSquaresSpinner  } from 'epic-spinners'
 export default {
   name: "CreateActivity",
+  components: {
+    SwappingSquaresSpinner
+  },
   data() {
     return {
       activitiesRequestInfo: {

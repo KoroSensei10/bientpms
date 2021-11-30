@@ -102,6 +102,12 @@
         <button type="submit" class="btn btn-primary">
             Modifier
         </button>
+        <intersecting-circles-spinner
+            v-if="loading"
+            :animation-duration="1200"
+            :size="70"
+            color="#ff1d5e"
+        />
     </form>
     <div v-if="this.message" class="alert alert-success" role="alert">
         L'activité a bien été modifiée !
@@ -117,8 +123,12 @@
 
 <script>
 import GestionActivities from "../services/activities.service.js";
+import { IntersectingCirclesSpinner } from 'epic-spinners'
 export default {
     name: "AcitityPage",
+    components: {
+        IntersectingCirclesSpinner
+    },
     data() {
         return {
             updatableData: {

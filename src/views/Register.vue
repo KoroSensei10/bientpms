@@ -179,6 +179,12 @@
         </div>
       </div>
     </div>
+    <SemipolarSpinner class="align-self-center"
+          v-if="loading"
+          :animation-duration="2000"
+          :size="65"
+          color="#ff1d5e"
+        />
     <div v-if="inscriptionValide" class="alert alert-success align-self-center" role="alert">
         Vous vous êtes bien inscrit, mais vous devez vérifier votre email avant de pouvoir vous connecter.
       </div>
@@ -188,8 +194,12 @@
 
 <script>
 import AuthService from "../services/auth.service.js";
+import { SemipolarSpinner  } from 'epic-spinners'
 export default {
   name: "Register",
+  components: {
+    SemipolarSpinner
+  },
   data() {
     return {
       suite: true,

@@ -47,13 +47,23 @@
         <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" class="btn btn-primary align-self-center" v-on:click="updateData" v-if="!disableEdit">
             Edit information
         </button>
+        <LoopingRhombusesSpinner class="align-self-center"
+            v-if="loading"
+            :animation-duration="2500"
+            :rhombus-size="15"
+            color="#ff1d5e"
+            />
     </div>
 </template>
 
 <script>
 import UserInformation from '../services/userInfo.service.js';
+import { LoopingRhombusesSpinner } from 'epic-spinners'
 export default {
     name: 'Profile',
+    components: {
+        LoopingRhombusesSpinner
+    },
     data() {
         return {
             userInfo: {
@@ -67,6 +77,7 @@ export default {
             error: false,
             infoUpdated: false,
             message: "",
+            loading: false,
             disableEdit: true
         }
     },
@@ -81,13 +92,16 @@ export default {
             this.$router.push('/');
         },
         updateData() {
+            this.loading = true;
             UserInformation.updateProfileInformation(this.updatableData).then((data) => {
                 this.updatableData = data;
                 this.infoUpdated = true;
+                this.loading = false;
                 setTimeout(() => this.infoUpdated = false, 3000);
             }).catch((error) => {
                 this.error = true;
                 this.message = error;
+                this.loading = false;
             });
         }
     },

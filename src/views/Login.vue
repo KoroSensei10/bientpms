@@ -67,9 +67,11 @@
         <div v-if="authFail" class="alert alert-danger align-items-center" role="alert">
           <strong>{{ this.message }}</strong>
         </div>
-        <div class="spinner-border text-info" v-if="loading" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
+        <SemipolarSpinner v-if="loading"
+          :animation-duration="2000"
+          :size="65"
+          color="#ff1d5e"
+        />
       </div>
     </div>
   </div>
@@ -77,8 +79,12 @@
 </template>
 
 <script>
+import { SemipolarSpinner  } from 'epic-spinners'
 export default {
   name: "Login",
+  components: {
+    SemipolarSpinner
+  },
   data() {
     return {
       loading: false,

@@ -28,6 +28,12 @@
       <button @click="getActivities()" class="btn btn-primary m-3">Chercher</button>
       <button @click="resetSearch()" class="btn btn-danger">Reset</button>
     </div>
+    <ScalingSquaresSpinner class="align-self-center"
+      v-if="loading"
+      :animation-duration="1250"
+      :size="65"
+      color="#ff1d5e"
+    />
     <div class="d-flex flex-column flex-sm-row flex-wrap" v-if="activities">
       <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity" :participant="true"/>
     </div>
@@ -175,10 +181,12 @@
 <script>
 import Activity from "../components/Activity.vue";
 import GestionActivities from "../services/activities.service.js";
+import { ScalingSquaresSpinner  } from 'epic-spinners'
 export default {
   name: "Home",
   components: {
     Activity,
+    ScalingSquaresSpinner
   },
   data() {
     return {
@@ -196,9 +204,10 @@ export default {
   },
   methods: {
     getActivities() {
+      this.loading = true;
+      this.activities = {};
       GestionActivities.getActivitiesBySearch(this.activitiesRequestInfo).then((data) => {
-          this.loading = false;
-          this.activities = data;
+          setTimeout(() => {this.loading = false; this.activities = data;}, 2000)
         })
         .catch((error) => {
           this.loading = false;
@@ -221,6 +230,7 @@ export default {
   },
   beforeMount() {
     //récup les activités de l'user et les mets sous forme de card
+    this.loading = true;
     this.getActivities();
 
     GestionActivities.getSports()

@@ -9,6 +9,12 @@
                 <label class="form-check-label" for="flexSwitchCheckChecked">Activités actives</label>
             </div>
         </div>
+        <SwappingSquaresSpinner class="align-self-center"
+            v-if="loading"
+            :animation-duration="1000"
+            :size="65"
+            color="#ff1d5e"
+        />
         <div class="d-flex flex-column flex-sm-row flex-wrap" v-if="activities">
             <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity" :owner="true"/>
         </div>
@@ -20,10 +26,12 @@
 <script>
 import Activity from "../components/Activity.vue"
 import GestionActivities from '../services/activities.service.js'
+import { SwappingSquaresSpinner  } from 'epic-spinners'
 export default {
     name: "UserActivities",
     components: {
-        Activity
+        Activity,
+        SwappingSquaresSpinner
     },
     data() {
         return {
@@ -39,13 +47,14 @@ export default {
     },
     methods: {
         getActivities() {
+            this.loading = true;
             GestionActivities.getActiveUserActivities(this.activitiesRequestInfo).then((data) => {
-            this.loading = false;
-            this.activities = data;
-        }).catch((error) => {
-            this.loading = false;
-            this.message = error;
-        })
+                this.loading = false;
+                this.activities = data;
+            }).catch((error) => {
+                this.loading = false;
+                this.message = error;
+            })
         },
         logout() {
             this.$store.dispatch('logout');
