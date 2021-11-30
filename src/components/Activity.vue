@@ -24,11 +24,18 @@
         <span class="badge rounded-pill bg-success" v-for="level in this.activityInfo.levels" v-bind:key="level.id">{{ level.level }}</span>
       </p>
       <!--Div pour pouvoir participer-->
-      <div v-if="participant">
-        <button @click="addMyParticipation" class="btn btn-primary float-center">Participer</button>
-        <select name="levels" id="levels" v-model="this.levelSelected" required>
+      <div v-if="participant && !userParticipe">
+        <button @click="addMyParticipation" class="btn btn-primary float-center" :disabled="userParticipe">Participer</button>
+        <select name="levels" id="levels" v-model="this.levelSelected" class="form-select m-1" required :disabled="userParticipe">
           <option v-for="level in this.activityInfo.levels" :value="level.level" v-bind:key="level.id">{{ level.level }}</option>
         </select>
+      </div>
+      <div v-else class="mb-3">
+        <p>Vous participez à cette activité.</p>
+        <button class="btn btn-danger" @click="removeMyParticipation"> Annuler ? </button>
+      </div>
+      <div v-if="!loading">
+        <p>Il y a déjà {{ this.participants.length }} participants !</p>
       </div>
       <!--Div pour modifier/supprimer l'activité-->
       <div v-if="owner">
@@ -53,9 +60,24 @@ export default {
   data() {
     return {
       id: this.activityInfo.id,
+      participants: null,
+      loading: false,
       error: null,
       message: null,
-      levelSelected: "débutant"
+      levelSelected: null
+    }
+  },
+  computed: {
+    userParticipe() {
+      let tempParticipants = this.participants
+      
+      if (this.$store.state.userInformation.username != '' && this.$store.state.userInformation.username) {
+        tempParticipants = tempParticipants.filter((item) => {
+          return item.user.username.includes(this.$store.state.userInformation.username)
+        })
+      }
+      console.log(tempParticipants);
+      return false
     }
   },
   methods: {
@@ -73,10 +95,27 @@ export default {
       let reqData = {level: this.levelSelected, activity_id: this.activityInfo.id};
       GestionParticipations.addMyParticipation(reqData).then(() => {
         this.message = "Vous êtes bien inscrit à cette activité !";
+      }).catch(() =>{
+        this.error = "Veuillez chosir votre niveau";
+      })
+    },
+    removeMyParticipation() {
+      GestionParticipations.removeMyParticipation(this.id).then(() => {
+        this.message = "Vous êtes bien désinscrit de cette activité !";
       }).catch((error) =>{
         this.error = error;
-      })
+      });
     }
+  },
+  beforeMount() {
+    this.loading = true;
+    GestionActivities.getActivityWithId(this.id).then((data) => {
+      this.participants = data.participants;
+      this.loading = false;
+    }).catch(() =>{
+      this.error = "Nous n'arrivons pas à récupérer les participants de cette activité."
+      this.loading = false;
+    })
   }
 };
 </script>

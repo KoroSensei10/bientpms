@@ -11,8 +11,8 @@
         placeholder="Rechercher un joueur ou une activité..."
       />
     </div> -->
-    <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center">
-      <h4>Filters : </h4>
+    <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center" v-if="!loading">
+      <h4>Filtres : </h4>
       <div class="form-group flex-grow-1 d-flex mb-3 justify-content-center align-items-center">
         <label class="form-label flex-grow-1" for="">Code Postal</label>
         <input class="form-control flex-grow-0" type="text" v-model="this.activitiesRequestInfo.postcode">
@@ -28,7 +28,7 @@
       <button @click="getActivities()" class="btn btn-primary m-3">Chercher</button>
       <button @click="resetSearch()" class="btn btn-danger">Reset</button>
     </div>
-    <ScalingSquaresSpinner class="align-self-center"
+    <ScalingSquaresSpinner class="align-self-center m-3"
       v-if="loading"
       :animation-duration="1250"
       :size="65"

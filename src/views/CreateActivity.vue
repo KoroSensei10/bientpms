@@ -2,7 +2,7 @@
   <div class="text-center text-white p-1 size-title color">
     Créer une Activité
   </div>
-  <form class="m-3 flex-grow-1 padding" @submit.prevent="createActivity">
+  <form class="m-3 flex-grow-1 padding d-flex flex-column align-items-center" @submit.prevent="createActivity">
     <div class="mb-3">
       <label for="titre" class="form-label">Titre</label>
       <input
@@ -155,7 +155,7 @@
         Créer cette activité
       </button>
     </div>
-    <SwappingSquaresSpinner class=""
+    <SwappingSquaresSpinner class="mt-3"
       v-if="loading"
       :animation-duration="1000"
       :size="65"
