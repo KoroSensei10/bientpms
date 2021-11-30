@@ -1,7 +1,15 @@
 <template>
-    <div class="d-flex flex-sm-column">
+    <div class="d-flex flex-column">
         <h1>Page activités de l'user</h1>
-        <div class="d-flex flex-sm-column" v-if="activities">
+        <div class="d-flex justify-content-center align-items-center">
+            <h4>Filters : </h4>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" v-on:change="getActivities()"
+                    role="switch" id="flexSwitchCheckChecked" v-model="this.activitiesRequestInfo.active">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Activités actives</label>
+            </div>
+        </div>
+        <div class="d-flex flex-column flex-sm-row flex-wrap" v-if="activities">
             <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity"/>
         </div>
         <div v-if="this.message" class="alert alert-danger" role="alert">
@@ -20,8 +28,7 @@ export default {
     data() {
         return {
             activitiesRequestInfo : {
-                active: false,
-                postcode: 51100,
+                active: true,
                 offset: 0,
                 limit: 10,
             },
@@ -31,10 +38,9 @@ export default {
         }
     },
     methods: {
-        getActivities(requestInfo) {
-            GestionActivities.getActiveUserActivities(requestInfo).then((data) => {
+        getActivities() {
+            GestionActivities.getActiveUserActivities(this.activitiesRequestInfo).then((data) => {
             this.loading = false;
-            console.log(data)
             this.activities = data;
         }).catch((error) => {
             this.loading = false;
@@ -53,7 +59,7 @@ export default {
     },
     beforeMount() {
         //récup les activités de l'user et les mets sous forme de card
-        this.getActivities(this.activitiesRequestInfo)
+        this.getActivities()
     }
 }
 </script>
