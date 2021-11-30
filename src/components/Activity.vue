@@ -25,27 +25,10 @@
       </p>
       <button v-if="participant" @click="participation" class="btn btn-primary float-center">Participer</button>
       <button v-if="!participant" @click="modifActivity" class="btn btn-primary float-start">Modifier</button>
-      <button v-if="!participant" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger float-end">Supprimer</button>
+      <button v-if="!participant" @click="deleteActivity" class="btn btn-danger float-end">Supprimer</button>
+      <!-- <button v-if="!participant" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger float-end">Supprimer</button> -->
     </div>
     <div class="card-footer text-muted">{{ this.activityInfo.postcode }} / {{ this.activityInfo.address }}</div>
-  </div>
-  <!-- Modal -->
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">Supprimer {{ this.activityInfo.title }}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Voulez-vous vraiment supprimer cette activité ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" @click="deleteActivity" class="btn btn-primary">Oui</button>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -59,16 +42,19 @@ export default {
   },
   data() {
     return {
+      id: this.activityInfo.id,
       error: null,
       message: null
     }
   },
   methods: {
     modifActivity() {
-      this.$router.push({ name: 'ActivityPage', params: { id: this.activityInfo.id }});
+      console.log(this.id)
+      this.$router.push({ name: 'ActivityPage', params: { id: this.id }});
     },
     deleteActivity() {
-      GestionActivities.deleteActivity(this.activityInfo.id).then((data) => {
+      console.log(this.id)
+      GestionActivities.deleteActivity(this.id).then((data) => {
         this.message = data;
       }).catch((error) => {
         this.error = error;

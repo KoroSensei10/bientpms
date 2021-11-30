@@ -73,7 +73,7 @@ class GestionActivities{
             headers: headers,
             method: 'DELETE'
         }
-        const response = await fetch(API_URL + 'activity/me/' + activityId, requestOptions);
+        const response = await fetch(API_URL + 'activity/' + activityId, requestOptions);
         const data = await response.json();
         if (!response.ok){
             const error = (data) || response.status;
