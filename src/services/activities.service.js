@@ -16,7 +16,7 @@ class GestionActivities{
         const data = await response.json();
         if (!response.ok){
             const error = (data) || response.status;
-            return Promise.reject(error);
+            return Promise.reject(error.detail);
         }
         return data
     }
@@ -31,7 +31,7 @@ class GestionActivities{
         const data = await response.json();
         if (!response.ok){
             const error = (data) || response.status;
-            return Promise.reject(error);
+            return Promise.reject(error.detail);
         }
         return data
     }
@@ -47,7 +47,37 @@ class GestionActivities{
         const data = await response.json();
         if (!response.ok){
             const error = (data) || response.status;
-            return Promise.reject(error);
+            return Promise.reject(error.detail);
+        }
+        return data
+    }
+
+    async getSports() {
+        const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
+        const requestOptions = {
+            headers: headers,
+            method: 'GET',
+        }
+        const response = await fetch(API_URL + 'misc/sports', requestOptions);
+        const data = await response.json();
+        if (!response.ok){
+            const error = (data) || response.status;
+            return Promise.reject(error.detail);
+        }
+        return data
+    }
+
+    async getLevels() {
+        const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
+        const requestOptions = {
+            headers: headers,
+            method: 'GET',
+        }
+        const response = await fetch(API_URL + 'misc/levels', requestOptions);
+        const data = await response.json();
+        if (!response.ok){
+            const error = (data) || response.status;
+            return Promise.reject(error.detail);
         }
         return data
     }

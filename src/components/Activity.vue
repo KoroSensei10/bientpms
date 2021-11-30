@@ -17,9 +17,9 @@
           />
           <div class="card-body">
             <div class="clearfix mb-3">
-              <span class="float-start badge .rounded-pill .bg-primary">{{
-                this.activityInfo.levels.level
-              }}</span>
+              <span v-for="level in this.activityInfo.levels" v-bind:key="level.id" class="float-start badge .rounded-pill .bg-primary">
+                level.level
+              </span>
             </div>
             <h5 class="card-title">Tournoi de foot</h5>
             <p class="card-date">{{ this.activityInfo.event_date }}</p>
