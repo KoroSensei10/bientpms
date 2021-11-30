@@ -1,24 +1,36 @@
 <template>
-  <div class="d-flex text-center justify-content-center text-white p-1 size-title color">Accueil</div>
-  <div class=".d-flex .flex-sm-column" v-if="activities">
-    <Activity
-      v-for="activity in activities"
-      v-bind:key="activity.id"
-      :activity-info="activity"
+  <!-- barre de recherche -->
+  <div
+    class="
+      d-flex
+      text-center
+      justify-content-center
+      text-white
+      p-1
+      size-title
+      color
+    "
+  >
+    Accueil
+  </div>
+  <div class=".d-flex text-center justify-content-center">
+    <input
+      type="search"
+      class="form-control rounded"
+      placeholder="Rechercher un joueur ou une activité..."
     />
   </div>
-  
-  <div class=".d-flex text-center justify-content-center">
-  <input type="search" class="form-control rounded" placeholder="Rechercher un joueur ou une activité..."/>
-</div>
 
-  <div class="container flex-row d-flex flex-row justify-content-center ">
-    
+  <div class="container flex-row d-flex flex-row justify-content-center">
     <div class=".d-flex .flex-fill card-group justify-content-center">
-<div class=".d-flex justify-content-center m-3 "> 
-    <div class="card border-dark" style="width: 20rem;margin-left: 3px;">
-        <img src="/images/foot.jpg"  class="card-img-top w-100" alt="imageSport">
-        <div class="card-body">
+      <div class=".d-flex justify-content-center m-3">
+        <div class="card border-dark" style="width: 20rem; margin-left: 3px">
+          <img
+            src="/images/foot.jpg"
+            class="card-img-top w-100"
+            alt="imageSport"
+          />
+          <div class="card-body">
             <div class="clearfix mb-3">
               <span class="float-start badge rounded-pill bg-primary w-20">
                 debutant
@@ -28,87 +40,131 @@
               </span>
             </div>
             <h5 class="card-title">Tournoi de Football</h5>
-            <p class="card-subtitle">Venez passez un bon temps avec des amateurs de foot comme vous ! </p>
+            <p class="card-subtitle">
+              Venez passez un bon temps avec des amateurs de foot comme vous !
+            </p>
             <p class="card-text">14/12/2021</p>
             <p class="card-text">51100</p>
             <p class="card-text">Football</p>
-            
+          </div>
         </div>
-        </div>
-    </div>  
-    <div class=".d-flex justify-content-center m-3 "> 
-        <div class="card border-dark " style="width: 20rem;margin-left: 3px;
-    margin-right: 3px;">
-            <img src="/images/foot.jpg"  class="card-img-top w-100" alt="imageSport">
-            <div class="card-body">
-                <h5 class="card-title">Tournoi de Tennis</h5>
-                <p class="card-subtitle">Procedente igitur mox tempore cum adventicium nihil inveniretur, relicta ora maritima . </p>
-                <div class=".d-flex justify-content-end flex-fill">
-                <span class="badge rounded-pill bg-warning w-50 ">Débutant</span>
-                </div>
-                <p class="card-text">14/12/2021</p>
-                <p class="card-text">51100</p>
-                <p class="card-text">Tennis</p>
-                
-            </div>
-            </div>
-        </div>  
-        <div class=".d-flex justify-content-center m-3 "> 
-    <div class="card border-dark " style="width: 20rem;margin-left: 3px;
-    margin-right: 3px;">
-        <img src="/images/foot.jpg"  class="card-img-top w-100" alt="imageSport">
-        <div class="card-body">
+      </div>
+      <div class=".d-flex justify-content-center m-3">
+        <div
+          class="card border-dark"
+          style="width: 20rem; margin-left: 3px; margin-right: 3px"
+        >
+          <img
+            src="/images/foot.jpg"
+            class="card-img-top w-100"
+            alt="imageSport"
+          />
+          <div class="card-body">
             <h5 class="card-title">Tournoi de Tennis</h5>
-            <p class="card-subtitle">Procedente igitur mox tempore cum adventicium nihil inveniretur, relicta ora maritima . </p>
+            <p class="card-subtitle">
+              Procedente igitur mox tempore cum adventicium nihil inveniretur,
+              relicta ora maritima .
+            </p>
             <div class=".d-flex justify-content-end flex-fill">
-            <span class="badge rounded-pill bg-warning w-50 ">Débutant</span>
+              <span class="badge rounded-pill bg-warning w-50">Débutant</span>
             </div>
             <p class="card-text">14/12/2021</p>
             <p class="card-text">51100</p>
             <p class="card-text">Tennis</p>
-            
+          </div>
         </div>
+      </div>
+      <div class=".d-flex justify-content-center m-3">
+        <div
+          class="card border-dark"
+          style="width: 20rem; margin-left: 3px; margin-right: 3px"
+        >
+          <img
+            src="/images/foot.jpg"
+            class="card-img-top w-100"
+            alt="imageSport"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Tournoi de Tennis</h5>
+            <p class="card-subtitle">
+              Procedente igitur mox tempore cum adventicium nihil inveniretur,
+              relicta ora maritima .
+            </p>
+            <div class=".d-flex justify-content-end flex-fill">
+              <span class="badge rounded-pill bg-warning w-50">Débutant</span>
+            </div>
+            <p class="card-text">14/12/2021</p>
+            <p class="card-text">51100</p>
+            <p class="card-text">Tennis</p>
+          </div>
         </div>
-    </div>  
-    <div class=".d-flex justify-content-center m-3 "> 
-        <div class="card border-dark " style="width: 20rem;margin-left: 3px;
-    margin-right: 3px;">
-            <img src="/images/foot.jpg"  class="card-img-top w-100" alt="imageSport">
-            <div class="card-body">
-                <h5 class="card-title">Tournoi de Tennis</h5>
-                <p class="card-subtitle">Procedente igitur mox tempore cum adventicium nihil inveniretur, relicta ora maritima . </p>
-                <div class="d-flex justify-content-end flex-fill">
-                <span class="badge rounded-pill bg-warning w-50 ">Débutant</span>
-                </div>
-                <p class="card-text">14/12/2021</p>
-                <p class="card-text">51100</p>
-                <p class="card-text">Tennis</p>
-                
+      </div>
+      <div class=".d-flex justify-content-center m-3">
+        <div
+          class="card border-dark"
+          style="width: 20rem; margin-left: 3px; margin-right: 3px"
+        >
+          <img
+            src="/images/foot.jpg"
+            class="card-img-top w-100"
+            alt="imageSport"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Tournoi de Tennis</h5>
+            <p class="card-subtitle">
+              Procedente igitur mox tempore cum adventicium nihil inveniretur,
+              relicta ora maritima .
+            </p>
+            <div class="d-flex justify-content-end flex-fill">
+              <span class="badge rounded-pill bg-warning w-50">Débutant</span>
             </div>
-            </div>
-        </div>  
-        <div class=".d-flex justify-content-center m-3 "> 
-        <div class="card border-dark " style="width: 20rem;margin-left: 3px;
-    margin-right: 3px;">
-            <img src="/images/foot.jpg"  class="card-img-top w-100" alt="imageSport">
-            <div class="card-body">
-                <h5 class="card-title">Tournoi de Tennis</h5>
-                <p class="card-subtitle">Procedente igitur mox tempore cum adventicium nihil inveniretur, relicta ora maritima . </p>
-                <div class="d-flex justify-content-end flex-fill">
-                <span class="badge rounded-pill bg-warning w-50 ">Débutant</span>
-                </div>
-                <p class="card-text">14/12/2021</p>
-                <p class="card-text">51100</p>
-                <p class="card-text">Tennis</p>
-                
-            </div>
-            </div>
+            <p class="card-text">14/12/2021</p>
+            <p class="card-text">51100</p>
+            <p class="card-text">Tennis</p>
+          </div>
         </div>
-        
-    
+      </div>
+      <div class=".d-flex justify-content-center m-3">
+        <div
+          class="card border-dark"
+          style="width: 20rem; margin-left: 3px; margin-right: 3px"
+        >
+          <img
+            src="/images/foot.jpg"
+            class="card-img-top w-100"
+            alt="imageSport"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Tournoi de Tennis</h5>
+            <p class="card-subtitle">
+              Procedente igitur mox tempore cum adventicium nihil inveniretur,
+              relicta ora maritima .
+            </p>
+            <div class="d-flex justify-content-end flex-fill">
+              <span class="badge rounded-pill bg-warning w-50">Débutant</span>
+            </div>
+            <p class="card-text">14/12/2021</p>
+            <p class="card-text">51100</p>
+            <p class="card-text">Tennis</p>
+          </div>
+        </div>
+      </div>
     </div>
-</div>              
-  
+    <div class="d-flex flex-sm-column" v-if="activities">
+      <Activity
+        v-for="activity in activities"
+        v-bind:key="activity.id"
+        :activity-info="activity"
+        :participant="true"
+      />
+    </div>
+    <div
+      class="card ui fluid"
+      v-for="product in products"
+      :key="product.id"
+      style="margin: 0"
+    ></div>
+  </div>
 </template>
 
 <script>
@@ -163,7 +219,6 @@ export default {
 };
 </script>
 <style>
-
 .color {
   background: linear-gradient(to right, #0084ff, #00f2ff);
 }
@@ -179,12 +234,12 @@ export default {
   font-family: Times New Roman;
   font-weight: 700;
 }
-.size-retour{
-    font-size: 20px;
+.size-retour {
+  font-size: 20px;
 }
-
 </style>
 <!--
+                               des tests 
 <div
     class="card ui fluid"
     v-for="product in products"

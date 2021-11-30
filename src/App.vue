@@ -1,5 +1,5 @@
 <template>
-  <div ip="app">
+  <div ip="app" class="mb-5 pb-5">
     <div id="nav" v-if="!isAuthenticated" class="flex-grow-1">
       <router-link to="/">Accueil</router-link> |
       <router-link to="/about">About</router-link>

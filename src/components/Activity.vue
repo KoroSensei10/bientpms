@@ -12,6 +12,7 @@
         <div class="card .h-100 .shadow-sm">
           <img
             :src="this.activityInfo.sport.image"
+
             class="card-img-top"
             alt="image du sport"
           />
@@ -26,7 +27,7 @@
             <p class="card-cp">{{ this.activityInfo.postcode }}</p>
             <p class="card-sport">{{ this.activityInfo.sport.name }}</p>
 
-            <div v-if="participant">
+            <div v-if="this.participant">
               <div class=".text-center my-4">
                 <a href="#" class=".btn btn-info">Rejoindre</a>
               </div>
@@ -53,6 +54,7 @@ export default {
   name: "Activity",
   props: {
     activityInfo: Object,
+    participant: Boolean,
   },
 };
 </script>
