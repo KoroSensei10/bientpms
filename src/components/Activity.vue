@@ -4,7 +4,7 @@
     par exemple pour le titre de la carte tu mets {{ this.activityInfo.title }}
     pour avoir toutes les infos de l'activité regarde sur l'api de Liam http://157.90.237.150/docs#/activity/read_activities_api_v1_activity_get (dans l'onglet réponse)-->
   <div v-if="this.message" class="alert alert-success" role="alert">
-    L'activité est bien supprimé.
+    {{ this.message }}
   </div>
   <div v-if="this.error" class="alert alert-danger" role="alert">
     {{ this.error }}
@@ -21,12 +21,20 @@
       </p>
       <p class="card-text">
         <strong>Niveau : </strong>
-        <span class="badge rounded-pill bg-success" v-for="level in this.activityInfo.levels" v-bind:key="level.id"> {{level.level}}</span>
+        <span class="badge rounded-pill bg-success" v-for="level in this.activityInfo.levels" v-bind:key="level.id">{{ level.level }}</span>
       </p>
-      <button v-if="participant" @click="participation" class="btn btn-primary float-center">Participer</button>
-      <button v-if="!participant" @click="modifActivity" class="btn btn-primary float-start">Modifier</button>
-      <button v-if="!participant" @click="deleteActivity" class="btn btn-danger float-end">Supprimer</button>
-      <!-- <button v-if="!participant" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger float-end">Supprimer</button> -->
+      <!--Div pour pouvoir participer-->
+      <div v-if="participant">
+        <button @click="addMyParticipation" class="btn btn-primary float-center">Participer</button>
+        <select name="levels" id="levels" v-model="this.levelSelected" required>
+          <option v-for="level in this.activityInfo.levels" :value="level.level" v-bind:key="level.id">{{ level.level }}</option>
+        </select>
+      </div>
+      <!--Div pour modifier/supprimer l'activité-->
+      <div v-if="owner">
+        <button @click="modifActivity" class="btn btn-primary float-start">Modifier</button>
+        <button @click="deleteActivity" class="btn btn-danger float-end">Supprimer</button>
+      </div>
     </div>
     <div class="card-footer text-muted">{{ this.activityInfo.postcode }} / {{ this.activityInfo.address }}</div>
   </div>
@@ -34,31 +42,40 @@
 
 <script>
 import GestionActivities from "../services/activities.service.js";
+import GestionParticipations from "../services/participations.service.js";
 export default {
   name: "Activity",
   props: {
     activityInfo: Object,
-    participant: Boolean,
+    participant: {default: false, type: Boolean},
+    owner: {default: false, type: Boolean},
   },
   data() {
     return {
       id: this.activityInfo.id,
       error: null,
-      message: null
+      message: null,
+      levelSelected: "débutant"
     }
   },
   methods: {
     modifActivity() {
-      console.log(this.id)
       this.$router.push({ name: 'ActivityPage', params: { id: this.id }});
     },
     deleteActivity() {
-      console.log(this.id)
-      GestionActivities.deleteActivity(this.id).then((data) => {
-        this.message = data;
+      GestionActivities.deleteActivity(this.id).then(() => {
+        this.message = "L'activité a bien été supprimée.";
       }).catch((error) => {
         this.error = error;
       });
+    },
+    addMyParticipation() {
+      let reqData = {level: this.levelSelected, activity_id: this.activityInfo.id};
+      GestionParticipations.addMyParticipation(reqData).then(() => {
+        this.message = "Vous êtes bien inscrit à cette activité !";
+      }).catch((error) =>{
+        this.error = error;
+      })
     }
   }
 };

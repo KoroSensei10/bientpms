@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="d-flex flex-column flex-sm-row flex-wrap" v-if="activities">
-            <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity"/>
+            <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity" :owner="true"/>
         </div>
         <div v-if="this.message" class="alert alert-danger" role="alert">
             {{this.message}}
