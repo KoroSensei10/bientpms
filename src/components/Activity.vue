@@ -17,9 +17,9 @@
         <strong>Niveau : </strong>
         <span class="badge rounded-pill bg-success" v-for="level in this.activityInfo.levels" v-bind:key="level.id"> {{level.level}}</span>
       </p>
-      <a v-if="participant" href="#" class="btn btn-primary float-center">Participer</a>
-      <a v-if="!participant" href="#" class="btn btn-primary float-start">Modifier</a>
-      <a v-if="!participant" href="#" class="btn btn-danger float-end">Supprimer</a>
+      <button v-if="participant" class="btn btn-primary float-center">Participer</button>
+      <button v-if="!participant" @click="modifActivity" class="btn btn-primary float-start">Modifier</button>
+      <button v-if="!participant" class="btn btn-danger float-end">Supprimer</button>
     </div>
     <div class="card-footer text-muted">{{ this.activityInfo.postcode }} / {{ this.activityInfo.address }}</div>
   </div>
@@ -32,6 +32,11 @@ export default {
     activityInfo: Object,
     participant: Boolean,
   },
+  methods: {
+    modifActivity() {
+      this.$router.push({ name: 'ActivityPage', params: { id: this.activityInfo.id }});
+    }
+  }
 };
 </script>
 <style>

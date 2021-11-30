@@ -2,12 +2,6 @@
   <div class="text-center text-white p-1 size-title color">
     Créer une Activité
   </div>
-  <div v-if="this.message" class="alert alert-success" role="alert">
-    L'activité a bien été créée !
-  </div>
-  <div v-if="this.error" class="alert alert-danger" role="alert">
-    {{ this.error }}
-  </div>
   <form class="m-3 flex-grow-1 padding" @submit.prevent="createActivity">
     <div class="mb-3">
       <label for="titre" class="form-label">Titre</label>
@@ -21,7 +15,22 @@
         required
       />
     </div>
-
+    <div class="mb-3">
+      <label class="form-label">Sport</label>
+      <select
+        class="form-select"
+        aria-label="Select pour le sport"
+        v-model="this.activitiesRequestInfo.sport_id"
+      >
+        <option
+          v-for="sport in this.sports"
+          v-bind:key="sport.id"
+          :value="sport.id"
+        >
+          {{ sport.name }}
+        </option>
+      </select>
+    </div>
     <div class="mb-3">
       <label for="description" class="form-label">Description</label>
       <textarea
@@ -82,23 +91,6 @@
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Sport</label>
-      <select
-        class="form-select"
-        aria-label="Select pour le sport"
-        v-model="this.activitiesRequestInfo.sport_id"
-      >
-        <option
-          v-for="sport in this.sports"
-          v-bind:key="sport.id"
-          :value="sport.id"
-        >
-          {{ sport.name }}
-        </option>
-      </select>
-    </div>
-
-    <div class="mb-3">
       <div class="form-check form-check-inline">
         <input
           class="form-check-input"
@@ -137,7 +129,7 @@
           type="checkbox"
           id="confirmé"
           value="confirmé"
-          v-model="this.activitiesRequestInfo.confirmé"
+          v-model="this.activitiesRequestInfo.levels"
         />
         <label class="form-check-label" for="confirmé">confirmé</label>
       </div>
@@ -164,6 +156,12 @@
       </button>
     </div>
   </form>
+  <div v-if="this.message" class="alert alert-success" role="alert">
+    L'activité a bien été créée !
+  </div>
+  <div v-if="this.error" class="alert alert-danger" role="alert">
+    {{ this.error }}
+  </div>
 </template>
 
 <script>

@@ -6,6 +6,7 @@ import Register from '../views/Register.vue'
 import Home from '../views/Home.vue'
 import UserActivities from '../views/UserActivities.vue'
 import CreateActivity from '../views/CreateActivity.vue'
+import ActivityPage from '../views/ActivityPage.vue'
 
 const routes = [{
         path: '/',
@@ -26,6 +27,11 @@ const routes = [{
         path: '/createActivity',
         name: 'CreateActivity',
         component: CreateActivity
+    },
+    {
+        path: '/activityPage/:id',
+        name: 'ActivityPage',
+        component: ActivityPage
     },
     {
         path: '/login',

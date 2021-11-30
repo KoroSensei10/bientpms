@@ -36,6 +36,37 @@ class GestionActivities{
         return data
     }
 
+    async getActivityWithId(activityId) {
+        const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
+        const requestOptions = {
+            headers: headers,
+            method: 'GET',
+        }
+        const response = await fetch(API_URL + 'activity/' + activityId, requestOptions);
+        const data = await response.json();
+        if (!response.ok){
+            const error = (data) || response.status;
+            return Promise.reject(error.detail);
+        }
+        return data
+    }
+
+    async updateActivity(activityData) {
+        const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
+        const requestOptions = {
+            headers: headers,
+            method: 'PUT',
+            body: JSON.stringify(activityData),
+        }
+        const response = await fetch(API_URL + 'activity/me', requestOptions);
+        const data = await response.json();
+        if (!response.ok){
+            const error = (data) || response.status;
+            return Promise.reject(error.detail);
+        }
+        return data
+    }
+
     async createActivity(activitiesInfo) {
         const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
         const requestOptions = {
