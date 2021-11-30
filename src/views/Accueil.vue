@@ -13,8 +13,8 @@
     <div id="logo">
       <img src="/images/tpms.ico" alt="logo" />
     </div>
-    <div id="citation .d-flex .justify-content-center">
-      <p class="fs-1 mt-md-5 .text-white citation">
+    <div class="m-3 flex-grow-1">
+      <p class="citation">
         Tomber à été inventé pour se relever. Malheur à ceux qui ne tombent
         jamais.
       </p>
@@ -22,7 +22,7 @@
     <div id="boutons">
       <button
         type="button"
-        class="btn .buttons m-3 btn-outline-primary btn-lg mx-auto .d-block"
+        class="btn btn-outline-primary btn-lg mx-auto .d-block"
       >
         <router-link to="/login">Se connecter</router-link>
       </button>
@@ -30,9 +30,8 @@
       <hr align="right" width="100%" size="4" noshade />
       <p></p>
       <button
-        to="/register"
         type="button"
-        class="btn buttons btn-outline-primary btn-lg mx-auto .d-block"
+        class="btn btn-outline-success btn-lg mx-auto .d-block"
       >
         <router-link to="/register">S'inscrire</router-link>
       </button>
@@ -43,11 +42,44 @@
       </footer>
     </div>
   </div>
-  <div></div>
   <div class="bottom-decoration"></div>
 </template>
 
 <script>
 
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
+.img {
+    height: 250px;
+    width: auto;
+}
+
+@media (max-width: 725px) {
+    .img {
+        height: 30vw;
+        width: auto;
+    }
+}
+
+.citation {
+    font-family: 'Rubik', sans-serif;
+    font-style: italic;
+    font-size: 1em;
+}
+
+.buttons {
+    width: 50vw;
+    border-radius: 25px;
+}
+
+.p {
+    text-align: center;
+}
+
+.container {
+    margin-top: 30px;
+}
+</style>
 
