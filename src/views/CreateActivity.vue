@@ -3,7 +3,7 @@
     Créer une Activité
   </div>
   <div v-if="this.message" class="alert alert-success" role="alert">
-    L'activité à bien était créer !
+    L'activité a bien été créée !
   </div>
   <div v-if="this.error" class="alert alert-danger" role="alert">
     {{ this.error }}
@@ -70,11 +70,12 @@
     <div class="mb-3">
       <label for="dateDeb" class="form-label">Date</label>
       <input
-        type="datetime-local"
+        type="date"
         class="form-control"
         id="dateDeb"
         name="dateDeb"
         pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        placeholder="Date de l'acitvité"
         v-model="this.activitiesRequestInfo.event_date"
         required
       />
@@ -174,7 +175,7 @@ export default {
       activitiesRequestInfo: {
         title: "",
         description: "",
-        event_date: "",
+        event_date: "2021-12-12",
         postcode: "",
         address: "",
         image: "",
@@ -215,14 +216,6 @@ export default {
     GestionActivities.getSports()
       .then((sports) => {
         this.sports = sports;
-      })
-      .catch((error) => {
-        this.message = error;
-      });
-    GestionActivities.getLevels()
-      .then((levels) => {
-        this.levels = levels;
-        console.log(levels);
       })
       .catch((error) => {
         this.message = error;

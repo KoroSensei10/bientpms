@@ -21,7 +21,7 @@ export default {
       selected: 1,
       options: [
         { id: 1, icon: "fa fa-home", title: "Home", path: {name: "Home"} },
-        // { id: 2, icon: "fa fa-coffee", title: "Meet" },
+        { id: 2, icon: "fa fa-coffee", title: "Create", path: {name: "CreateActivity"}},
         { 
           id: 3, 
           icon: "fa fa-cog", 
