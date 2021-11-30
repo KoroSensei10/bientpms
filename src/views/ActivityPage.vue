@@ -45,6 +45,7 @@
                 id="débutant"
                 value="débutant"
                 v-model="this.updatableData.levels"
+                required
                 />
                 <label class="form-check-label" for="débutant">débutant</label>
             </div>
@@ -55,6 +56,7 @@
                 id="amateur"
                 value="amateur"
                 v-model="this.updatableData.levels"
+                required 
                 />
                 <label class="form-check-label" for="amateur">amateur</label>
             </div>
@@ -65,6 +67,7 @@
                 id="intermédiaire"
                 value="intermédiaire"
                 v-model="this.updatableData.levels"
+                required 
                 />
                 <label class="form-check-label" for="intermédiaire"
                 >intermédiaire</label
@@ -77,6 +80,7 @@
                 id="confirmé"
                 value="confirmé"
                 v-model="this.updatableData.levels"
+                required 
                 />
                 <label class="form-check-label" for="confirmé">confirmé</label>
             </div>
@@ -87,6 +91,7 @@
                 id="expert"
                 value="expert"
                 v-model="this.updatableData.levels"
+                required 
                 />
                 <label class="form-check-label" for="expert">expert</label>
             </div>
