@@ -76,8 +76,11 @@ export default {
           return item.user.username.includes(this.$store.state.userInformation.username)
         })
       }
-      console.log(tempParticipants);
-      return false
+      if (tempParticipants && tempParticipants.length > 0) {
+        return true;
+      }else{
+        return false;
+      }
     }
   },
   methods: {
@@ -95,6 +98,7 @@ export default {
       let reqData = {level: this.levelSelected, activity_id: this.activityInfo.id};
       GestionParticipations.addMyParticipation(reqData).then(() => {
         this.message = "Vous êtes bien inscrit à cette activité !";
+        this.$forceUpdate();
       }).catch(() =>{
         this.error = "Veuillez chosir votre niveau";
       })
@@ -102,6 +106,7 @@ export default {
     removeMyParticipation() {
       GestionParticipations.removeMyParticipation(this.id).then(() => {
         this.message = "Vous êtes bien désinscrit de cette activité !";
+        this.$forceUpdate();
       }).catch((error) =>{
         this.error = error;
       });

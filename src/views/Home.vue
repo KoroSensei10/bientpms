@@ -35,7 +35,7 @@
       color="#ff1d5e"
     />
     <div class="d-flex flex-column flex-sm-row flex-wrap" v-if="activities">
-      <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity" :participant="true"/>
+      <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity" :participant="true" />
     </div>
   </div>
   <!-- <div class="container flex-row d-flex flex-row justify-content-center">
