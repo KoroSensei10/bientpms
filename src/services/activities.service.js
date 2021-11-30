@@ -67,6 +67,21 @@ class GestionActivities{
         return data
     }
 
+    async deleteActivity(activityId) {
+        const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
+        const requestOptions = {
+            headers: headers,
+            method: 'DELETE'
+        }
+        const response = await fetch(API_URL + 'activity/me/' + activityId, requestOptions);
+        const data = await response.json();
+        if (!response.ok){
+            const error = (data) || response.status;
+            return Promise.reject(error.detail);
+        }
+        return data
+    }
+
     async createActivity(activitiesInfo) {
         const headers = {"Authorization": "Bearer " + localStorage.getItem('token')};
         const requestOptions = {
