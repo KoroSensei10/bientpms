@@ -23,7 +23,7 @@
         <strong>Niveau : </strong>
         <span class="badge rounded-pill bg-success" v-for="level in this.activityInfo.levels" v-bind:key="level.id"> {{level.level}}</span>
       </p>
-      <button v-if="participant" class="btn btn-primary float-center">Participer</button>
+      <button v-if="participant" @click="participation" class="btn btn-primary float-center">Participer</button>
       <button v-if="!participant" @click="modifActivity" class="btn btn-primary float-start">Modifier</button>
       <button v-if="!participant" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger float-end">Supprimer</button>
     </div>
