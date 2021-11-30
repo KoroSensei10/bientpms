@@ -4,6 +4,9 @@
         <div class="d-flex flex-sm-column" v-if="activities">
             <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity"/>
         </div>
+        <div v-if="this.message" class="alert alert-danger" role="alert">
+            {{this.message}}
+        </div>
     </div>
 </template>
 <script>
@@ -18,11 +21,9 @@ export default {
         return {
             activitiesRequestInfo : {
                 active: false,
-                sport_id: null,
-                postcode: null,
+                postcode: 51100,
                 offset: 0,
                 limit: 10,
-                levels: []
             },
             activities: null,
             message: null,
@@ -33,6 +34,7 @@ export default {
         getActivities(requestInfo) {
             GestionActivities.getActiveUserActivities(requestInfo).then((data) => {
             this.loading = false;
+            console.log(data)
             this.activities = data;
         }).catch((error) => {
             this.loading = false;

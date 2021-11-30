@@ -17,13 +17,13 @@
           />
           <div class="card-body">
             <div class="clearfix mb-3">
-              <span v-for="level in this.activityInfo.levels" v-bind:key="level.id" class="float-start badge .rounded-pill .bg-primary">
-                level.level
+              <span v-for="level in this.activityInfo.levels" v-bind:key="level.id" class="">
+                {{level.level}}
               </span>
             </div>
-            <h5 class="card-title">Tournoi de foot</h5>
+            <h5 class="card-title">{{ this.activityInfo.title }}</h5>
             <p class="card-date">{{ this.activityInfo.event_date }}</p>
-            <p class="card-cp">{{ this.activityInfo.postcode }}</p>
+            <p class="card-cp">{{ this.activityInfo.postcode }} / {{ this.activityInfo.address }}</p>
             <p class="card-sport">{{ this.activityInfo.sport.name }}</p>
 
             <div v-if="this.participant">
