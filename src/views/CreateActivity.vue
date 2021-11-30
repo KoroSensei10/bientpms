@@ -151,7 +151,7 @@
     </div> -->
 
     <div class="d-flex justify-content-center mt-5">
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-primary" :disabled="loading">
         Créer cette activité
       </button>
     </div>
@@ -194,8 +194,18 @@ export default {
         .then((message) => {
           this.loading = false;
           this.message = message;
-        })
-        .catch((error) => {
+          // pour remettre à 0 une fois l'activité créer
+          this.activitiesRequestInfo = {
+            title: "",
+            description: "",
+            event_date: "2021-12-12",
+            postcode: "",
+            address: "",
+            image: "",
+            sport_id: 0,
+            levels: [],
+          };
+        }).catch((error) => {
           this.loading = false;
           this.error = error;
         });
