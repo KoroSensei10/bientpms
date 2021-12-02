@@ -1,21 +1,26 @@
 <template>
-  <div ip="app" class="mb-5 pb-5">
-    <div id="nav" v-if="!isAuthenticated" class="flex-grow-1">
-      <router-link to="/">Accueil</router-link> |
+  <div>
+    <nav v-if="isAuthenticated" class="fixed-top border border-black">
+      <router-link to="/">Accueil</router-link>
       <router-link to="/about">About</router-link>
-    </div>
+    </nav>
+    <nav v-else class="fixed-top border border-black d-flex align-items-center justify-content-center">
+      <router-link to="/">Accueil</router-link>
+    </nav>
     <router-view />
     <!-- Affiche la NavBar que quand la personne est loggedin -->
-    <VueBottomNavigation v-if="isAuthenticated" value="1" :options="options" v-model="selected" />
+    <nav v-if="isAuthenticated" class="navbar fixed-bottom navbar-light bg-light">
+      <VueBottomNavigation value="1" :options="options" v-model="selected" />
+    </nav>
   </div>
 </template>
 
 <script>
-import VueBottomNavigation from "bottom-navigation-vue";
+// import VueBottomNavigation from "bottom-navigation-vue";
 export default {
   name: "App",
   components: {
-    VueBottomNavigation,
+    // VueBottomNavigation,
   },
   data: () => ({
       selected: 1,
@@ -60,10 +65,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   overflow: hidden;
-}
-
-#nav {
-  padding: 30px;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 #nav a {
@@ -75,16 +78,7 @@ export default {
   color: #42b983;
 }
 
-.bottom-decoration {
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 0px;
-  width: 100%;
-  height: 200px;
-  max-height: 20vh;
-  background-image: linear-gradient(to right, #0084ff, #00f2ff);
-  overflow-y: hidden;
-  overflow-x: hidden;
-  z-index: -1000;
+nav{
+  height: 50px;
 }
 </style>

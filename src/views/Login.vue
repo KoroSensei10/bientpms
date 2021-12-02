@@ -131,6 +131,11 @@ export default {
 </script>
 
 <style>
+#app{
+  /* padding-top: 0px!important; */
+  padding-bottom: 0px!important;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
 .in-container {
@@ -210,5 +215,19 @@ export default {
   background: #fff;
   height: var(--round);
   border-radius: 0 0 50% 50%;
+}
+
+.bottom-decoration {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0px;
+  width: 100%;
+  height: 200px;
+  max-height: 20vh;
+  background-image: linear-gradient(to right, #0084ff, #00f2ff);
+  overflow-y: hidden;
+  overflow-x: hidden;
+  z-index: -1000;
+  padding-bottom: 0px!important;
 }
 </style>

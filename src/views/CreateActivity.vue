@@ -250,9 +250,6 @@ div i {
 .color {
   background: linear-gradient(to right, #0084ff, #00f2ff);
 }
-.padding {
-  padding-bottom: 85px;
-}
 .size-label {
   font-size: calc(17px + 0.7vw);
 }

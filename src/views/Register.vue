@@ -263,6 +263,11 @@ export default {
 };
 </script>
 <style>
+#app{
+  /* padding-top: 0px!important; */
+  padding-bottom: 0px!important;
+}
+
 input {
   display: block;
   text-align: center;
@@ -333,5 +338,19 @@ input {
 
 .grey option {
     background-color: rgb(115, 115, 119);
+}
+
+.bottom-decoration {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0px;
+  width: 100%;
+  height: 200px;
+  max-height: 20vh;
+  background-image: linear-gradient(to right, #0084ff, #00f2ff);
+  overflow-y: hidden;
+  overflow-x: hidden;
+  z-index: -1000;
+  padding-bottom: 0px!important;
 }
 </style>
