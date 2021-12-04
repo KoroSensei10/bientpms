@@ -1,15 +1,11 @@
 <template>
-  <!--En gros c'est dans ce div que tu crées la carte bootstrap, et genre à la place où tu veux mettre genre le titre, la date le sport etc... 
-    tu mets genre un attribut de l'objet this.activityInfo
-    par exemple pour le titre de la carte tu mets {{ this.activityInfo.title }}
-    pour avoir toutes les infos de l'activité regarde sur l'api de Liam http://157.90.237.150/docs#/activity/read_activities_api_v1_activity_get (dans l'onglet réponse)-->
   <div v-if="this.message" class="alert alert-success" role="alert">
     {{ this.message }}
   </div>
   <div v-if="this.error" class="alert alert-danger" role="alert">
     {{ this.error }}
   </div>
-  <div class="card text-center m-3 flex-grow-1">
+  <div class="card text-center m-3 flex-grow-1 activity">
     <div class="card-header">{{ this.activityInfo.title }}</div>
     <div class="card-body">
       <h5 class="card-title">{{ this.activityInfo.sport.name }}</h5>
@@ -32,10 +28,10 @@
       </div>
       <div v-else class="mb-3">
         <p>Vous participez à cette activité.</p>
-        <button class="btn btn-danger" @click="removeMyParticipation"> Annuler ? </button>
+        <button @click="removeMyParticipation" class="btn btn-danger"> Annuler ? </button>
       </div>
       <div v-if="!loading">
-        <p>Il y a déjà {{ this.participants.length }} participants !</p>
+        <p>Il y a déjà {{ this.activityInfo.participant_count }} participants !</p>
       </div>
       <!--Div pour modifier/supprimer l'activité-->
       <div v-if="owner">
@@ -60,28 +56,14 @@ export default {
   data() {
     return {
       id: this.activityInfo.id,
-      participants: null,
       loading: false,
       error: null,
       message: null,
-      levelSelected: null
+      levelSelected: null,
+      userParticipe: false
     }
   },
   computed: {
-    userParticipe() {
-      let tempParticipants = this.participants
-      
-      if (this.$store.state.userInformation.username != '' && this.$store.state.userInformation.username) {
-        tempParticipants = tempParticipants.filter((item) => {
-          return item.user.username.includes(this.$store.state.userInformation.username)
-        })
-      }
-      if (tempParticipants && tempParticipants.length > 0) {
-        return true;
-      }else{
-        return false;
-      }
-    }
   },
   methods: {
     modifActivity() {
@@ -98,7 +80,7 @@ export default {
       let reqData = {level: this.levelSelected, activity_id: this.activityInfo.id};
       GestionParticipations.addMyParticipation(reqData).then(() => {
         this.message = "Vous êtes bien inscrit à cette activité !";
-        this.$forceUpdate();
+        this.userParticipe = true;
       }).catch(() =>{
         this.error = "Veuillez chosir votre niveau";
       })
@@ -113,17 +95,15 @@ export default {
     }
   },
   beforeMount() {
-    this.loading = true;
-    GestionActivities.getActivityWithId(this.id).then((data) => {
-      this.participants = data.participants;
-      this.loading = false;
-    }).catch(() =>{
-      this.error = "Nous n'arrivons pas à récupérer les participants de cette activité."
-      this.loading = false;
-    })
+
   }
 };
 </script>
-<style>
-
+<style scoped>
+.activity{
+  box-shadow: -3px 9px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: rgba(0, 0, 0, 0.25);
+  color: white;
+  margin: 2em;
+}
 </style>

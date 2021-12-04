@@ -1,27 +1,27 @@
 <template>
   <div>
-    <nav v-if="isAuthenticated" class="fixed-top border border-black">
+    <nav id="nav-top" v-if="isAuthenticated" class="fixed-top">
       <router-link to="/">Accueil</router-link>
       <router-link to="/about">About</router-link>
     </nav>
     <nav v-else class="fixed-top border border-black d-flex align-items-center justify-content-center">
       <router-link to="/">Accueil</router-link>
-      
     </nav>
-    <router-view />
+    <router-view id="app" />
+
     <!-- Affiche la NavBar que quand la personne est loggedin -->
-    <nav v-if="isAuthenticated" class="navbar fixed-bottom navbar-light bg-light">
-      <VueBottomNavigation value="1" :options="options" v-model="selected" />
+    <nav id="nav-bottom" v-if="isAuthenticated" class="navbar fixed-bottom navbar-light bg-light">
+      <VueBottomNavigation color="#000000" badgeColor="#000000" :value="selected" :options="options" v-model="selected" />
     </nav>
   </div>
 </template>
 
 <script>
-// import VueBottomNavigation from "bottom-navigation-vue";
+import VueBottomNavigation from "bottom-navigation-vue";
 export default {
   name: "App",
   components: {
-    // VueBottomNavigation,
+    VueBottomNavigation,
   },
   data: () => ({
       selected: 1,
@@ -66,20 +66,26 @@ export default {
   text-align: center;
   color: #2c3e50;
   overflow: hidden;
-  padding-bottom: 50px;
-  padding-top: 50px;
+  background-color: #001d3a;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  /* padding-top: 10px; */
+  padding-bottom: 5px;
+  box-sizing: border-box;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+#nav-top{
+  background-color: crimson;
+  border-bottom: rgba(0, 0, 0, 0.5);
+  box-shadow: -3px 9px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+#nav-bottom{
+  border-top: rgba(0, 0, 0, 0.5);
+  box-shadow: -3px 9px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 nav{
   height: 50px;
+  box-sizing: border-box;
 }
 </style>
