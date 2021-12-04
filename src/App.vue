@@ -6,6 +6,7 @@
     </nav>
     <nav v-else class="fixed-top border border-black d-flex align-items-center justify-content-center">
       <router-link to="/">Accueil</router-link>
+      
     </nav>
     <router-view />
     <!-- Affiche la NavBar que quand la personne est loggedin -->
