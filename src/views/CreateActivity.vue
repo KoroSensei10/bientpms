@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="text-center text-white p-1 size-title color">
-      Créer une Activité
-    </div>
     <form class="m-3 flex-grow-1 padding d-flex flex-column align-items-center" @submit.prevent="createActivity">
       <div class="mb-3">
         <label for="titre" class="form-label">Titre</label>
@@ -227,6 +224,10 @@ export default {
       this.$store.dispatch("logout");
       this.$router.push("/");
     },
+    eventChangeTitle(){
+      const data = {title: "Creér votre Activité"};
+      this.$emit('updateTitleName', data);
+    }
   },
   beforeCreate() {
     if (!this.isAuthenticated) {
@@ -242,6 +243,9 @@ export default {
         this.message = error;
       });
   },
+  mounted() {
+    this.eventChangeTitle();
+  }
 };
 </script>
 

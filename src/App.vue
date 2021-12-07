@@ -1,14 +1,16 @@
 <template>
   <div>
-    <nav id="nav-top" v-if="isAuthenticated" class="fixed-top d-flex align-items-center p-2 justify-content-around">
-      <router-link to="/profile">Profile</router-link>
+    <div v-if="isAuthenticated" id="nav-top"
+        class="fixed-top d-flex text-center justify-content-around align-items-center text-white p-1 color">
+      <router-link to="/profile">Profil</router-link>
+      <span class="size-title">{{ this.actualPage }}</span>
       <router-link to="/home">Home</router-link>
-    </nav>
+    </div>
     <nav v-else class="fixed-top border border-black d-flex align-items-center justify-content-center">
       <router-link to="/">Accueil</router-link>
     </nav>
     <div id="application">
-      <router-view/>
+      <router-view @update-title-name="updateTitleName"/>
     </div>
     <!-- Affiche la NavBar que quand la personne est loggedin -->
     <nav id="nav-bottom" v-if="isAuthenticated" class="navbar fixed-bottom navbar-light bg-light">
@@ -25,6 +27,7 @@ export default {
     VueBottomNavigation,
   },
   data: () => ({
+      actualPage: "Home",
       selected: 1,
       options: [
         { id: 1, icon: "fa fa-home", title: "Home", path: {name: "Home"} },
@@ -55,6 +58,11 @@ export default {
     isAuthenticated() {
       return this.$store.state.isAuthenticated;
     }
+  },
+  methods: {
+    updateTitleName(data) {
+      this.actualPage = data.title;
+    }
   }
 };
 </script>
@@ -80,13 +88,21 @@ body{
   background-color: #fff;
   margin-bottom: 50px;
   margin-top: 50px;
-  /* padding-top: 10px; */
+  padding-top: 10px;
   padding-bottom: 5px;
   box-sizing: border-box;
 }
 
+.color {
+  background: linear-gradient(to right, #0084ff, #00f2ff);
+}
+.size-title {
+  font-size: calc(25px + 2vw);
+  font-family: Times New Roman;
+  font-weight: 700;
+}
+
 #nav-top{
-  background-color: crimson;
   border-bottom: rgba(0, 0, 0, 0.5);
   box-shadow: -3px 9px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }

@@ -7,6 +7,8 @@ import Home from '../views/Home.vue'
 import UserActivities from '../views/UserActivities.vue'
 import CreateActivity from '../views/CreateActivity.vue'
 import ActivityPage from '../views/ActivityPage.vue'
+// import User from '../views/User.vue'
+// import Users from '../views/Users.vue'
 
 const routes = [{
         path: '/',
@@ -48,6 +50,16 @@ const routes = [{
         name: 'Profile',
         component: Profile
     },
+    // {
+    //     path: '/user/:username',
+    //     name: 'User',
+    //     component: User
+    // },
+    // {
+    //     paht: '/users',
+    //     name: 'Users',
+    //     component: Users
+    // },
     {
         path: '/about',
         name: 'About',

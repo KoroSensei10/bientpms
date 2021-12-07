@@ -60,6 +60,10 @@ export default {
             this.$store.dispatch('logout');
             this.$router.push('/');
         },
+        eventChangeTitle(){
+            const data = {title: "Vos Activités"};
+            this.$emit('updateTitleName', data);
+        }
     },
     beforeCreate() {
         if (!this.isAuthenticated) {
@@ -69,6 +73,9 @@ export default {
     beforeMount() {
         //récup les activités de l'user et les mets sous forme de card
         this.getActivities()
+    },
+    mounted() {
+        this.eventChangeTitle();
     }
 }
 </script>

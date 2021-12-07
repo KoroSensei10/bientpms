@@ -1,9 +1,6 @@
 <template>
   <!-- barre de recherche -->
   <div class="d-flex flex-column">
-    <div class="d-flex text-center justify-content-center text-white p-1 size-title color">
-      Home
-    </div>
     <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center" v-if="!loading">
       <h4>Filtres : </h4>
       <div class="form-group flex-grow-1 d-flex mb-3 justify-content-center align-items-center">
@@ -77,6 +74,10 @@ export default {
       this.$store.dispatch("logout");
       this.$router.push("/");
     },
+    eventChangeTitle(){
+      const data = {title: "Home"};
+      this.$emit('updateTitleName', data);
+    }
   },
   beforeCreate() {
     if (!this.isAuthenticated) {
@@ -96,14 +97,12 @@ export default {
         this.message = error;
     });
   },
+  mounted() {
+    this.eventChangeTitle();
+  }
 };
 </script>
 <style>
-
-.main {
-  
-}
-
 .color {
   background: linear-gradient(to right, #0084ff, #00f2ff);
 }

@@ -103,6 +103,10 @@ export default {
                 this.message = error;
                 this.loading = false;
             });
+        },
+        eventChangeTitle(){
+            const data = {title: "Profil"};
+            this.$emit('updateTitleName', data);
         }
     },
     beforeCreate() {
@@ -123,6 +127,9 @@ export default {
             this.error = true;
             this.message = error;
         })
+    },
+    mounted() {
+        this.eventChangeTitle();
     }
 }
 </script>

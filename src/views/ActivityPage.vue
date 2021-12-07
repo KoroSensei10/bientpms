@@ -1,7 +1,4 @@
 <template>
-    <div class="text-center text-white p-1 size-title color">
-        Modifier une Activité
-    </div>
     <form class="m-3 d-flex flex-column align-items-center flex-grow-1 padding" @submit.prevent="updateActivity">
         <div class="mb-3">
             <label for="titre" class="form-label"><h2>Titre</h2></label>
@@ -170,6 +167,10 @@ export default {
                 this.loading = false;
                 this.error = error;
             })
+        },
+        eventChangeTitle(){
+            const data = {title: "Activité"};
+            this.$emit('updateTitleName', data);
         }
     },
     beforeCreate() {
@@ -192,6 +193,9 @@ export default {
             this.loading = false;
             this.error = error;
         });
+    },
+    mounted() {
+        this.eventChangeTitle();
     }
 }
 </script>
