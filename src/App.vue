@@ -9,12 +9,16 @@
     <nav v-else class="fixed-top border border-black d-flex align-items-center justify-content-center">
       <router-link to="/">Accueil</router-link>
     </nav>
+
     <div id="application">
-      <router-view @update-title-name="updateTitleName"/>
+      <router-view 
+        @update-title-name="updateTitleName"
+      />
     </div>
+
     <!-- Affiche la NavBar que quand la personne est loggedin -->
     <nav id="nav-bottom" v-if="isAuthenticated" class="navbar fixed-bottom navbar-light bg-light">
-      <VueBottomNavigation color="#000000" badgeColor="#000000" :value="selected" :options="options" v-model="selected" />
+      <VueBottomNavigation :color="this.color" badgeColor="#000000" :value="selected" :options="options" v-model="selected" />
     </nav>
   </div>
 </template>
@@ -27,6 +31,7 @@ export default {
     VueBottomNavigation,
   },
   data: () => ({
+      color: "#000000",
       actualPage: "Home",
       selected: 1,
       options: [

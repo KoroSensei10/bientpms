@@ -70,10 +70,15 @@ const routes = [{
             import ( /* webpackChunkName: "about" */ '../views/About.vue')
     }
 ]
-
 const router = createRouter({
     history: createWebHashHistory(),
     routes
 })
+
+// router.beforeEach((to, from, next) => {
+//     if (!router.app.$store.state.isAuthenticated) next({ name: 'Login' })
+//     else next()
+// })
+
 
 export default router

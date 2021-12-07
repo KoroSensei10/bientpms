@@ -59,7 +59,8 @@ export default {
       this.loading = true;
       this.activities = {};
       GestionActivities.getActivitiesBySearch(this.activitiesRequestInfo).then((data) => {
-          setTimeout(() => {this.loading = false; this.activities = data;}, 2000)
+          // setTimeout(() => {}, 2000);
+          this.loading = false; this.activities = data;
         })
         .catch((error) => {
           this.loading = false;
