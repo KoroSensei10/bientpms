@@ -263,9 +263,10 @@ export default {
 };
 </script>
 <style>
-#app{
+#application{
   /* padding-top: 0px!important; */
   padding-bottom: 0px!important;
+  background-color: #fff;
 }
 
 input {

@@ -16,7 +16,7 @@
         .align-self-center
       "
     >
-      <div class="form-group .align-items-center .align-self-center">
+      <div class="form-group align-items-center d-flex flex-column align-self-center">
         <!-- en-tête du formulaire -->
         <header class="myHed .text-center">
           <p>Se connecter</p>
@@ -67,11 +67,13 @@
         <div v-if="authFail" class="alert alert-danger align-items-center" role="alert">
           <strong>{{ this.message }}</strong>
         </div>
-        <SemipolarSpinner v-if="loading"
+        <div v-if="loading" class="align-self-center">
+          <SemipolarSpinner
           :animation-duration="2000"
           :size="65"
           color="#ff1d5e"
         />
+        </div>
       </div>
     </div>
   </div>
@@ -131,9 +133,10 @@ export default {
 </script>
 
 <style>
-#app{
+#application{
   /* padding-top: 0px!important; */
   padding-bottom: 0px!important;
+  background-color: #fff;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");

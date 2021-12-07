@@ -1,14 +1,15 @@
 <template>
   <div>
-    <nav id="nav-top" v-if="isAuthenticated" class="fixed-top">
-      <router-link to="/">Accueil</router-link>
-      <router-link to="/about">About</router-link>
+    <nav id="nav-top" v-if="isAuthenticated" class="fixed-top d-flex align-items-center p-2 justify-content-around">
+      <router-link to="/profile">Profile</router-link>
+      <router-link to="/home">Home</router-link>
     </nav>
     <nav v-else class="fixed-top border border-black d-flex align-items-center justify-content-center">
       <router-link to="/">Accueil</router-link>
     </nav>
-    <router-view id="app" />
-
+    <div id="application">
+      <router-view/>
+    </div>
     <!-- Affiche la NavBar que quand la personne est loggedin -->
     <nav id="nav-bottom" v-if="isAuthenticated" class="navbar fixed-bottom navbar-light bg-light">
       <VueBottomNavigation color="#000000" badgeColor="#000000" :value="selected" :options="options" v-model="selected" />
@@ -27,26 +28,26 @@ export default {
       selected: 1,
       options: [
         { id: 1, icon: "fa fa-home", title: "Home", path: {name: "Home"} },
-        { id: 2, icon: "fa fa-coffee", title: "Create", path: {name: "CreateActivity"}},
-        { 
-          id: 3, 
-          icon: "fa fa-cog", 
-          title: "Settings", 
+        {
+          id: 2,
+          icon: "fa fa-coffee",
+          title: "Activités",
           childs: [
             {
-              id: 301,
+              id: 201,
               icon: "fa fa-calendar-check",
               title: "Vos Activités",
               path: {name: "UserActivities"}
             },
-            { 
-              id: 302,
-              icon: "fa fa-user",
-              title: "Vous",
-              path: {name: "Profile"}
+            {
+              id: 202,
+              icon: "fa fa-calendar",
+              title: "Créer votre activité",
+              path: {name: "CreateActivity"}
             }
           ]
         },
+        { id: 3, icon: "fa fa-user", title: "Les gens", path: {name: "User"}},
         // { id: 4, icon: "fa fa-bell", title: "Messages" },
       ],
   }),
@@ -59,16 +60,26 @@ export default {
 </script>
 
 <style>
-#app {
+body{
+  height: 100%;
+}
+
+#app{
+  background-color: #001d3a;
+  height: 100%;
+}
+
+#application {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  overflow: hidden;
-  background-color: #001d3a;
-  margin-bottom: 25px;
-  margin-top: 25px;
+  overflow: auto;
+  height: 100%;
+  background-color: #fff;
+  margin-bottom: 50px;
+  margin-top: 50px;
   /* padding-top: 10px; */
   padding-bottom: 5px;
   box-sizing: border-box;

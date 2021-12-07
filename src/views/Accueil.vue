@@ -50,9 +50,10 @@
 </script>
 
 <style>
-#app{
+#application{
   /* padding-top: 0px!important; */
   padding-bottom: 0px!important;
+  background-color: #fff;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
