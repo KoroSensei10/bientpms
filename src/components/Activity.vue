@@ -1,15 +1,11 @@
 <template>
-  <!--En gros c'est dans ce div que tu crées la carte bootstrap, et genre à la place où tu veux mettre genre le titre, la date le sport etc... 
-    tu mets genre un attribut de l'objet this.activityInfo
-    par exemple pour le titre de la carte tu mets {{ this.activityInfo.title }}
-    pour avoir toutes les infos de l'activité regarde sur l'api de Liam http://157.90.237.150/docs#/activity/read_activities_api_v1_activity_get (dans l'onglet réponse)-->
   <div v-if="this.message" class="alert alert-success" role="alert">
-    L'activité est bien supprimé.
+    {{ this.message }}
   </div>
   <div v-if="this.error" class="alert alert-danger" role="alert">
     {{ this.error }}
   </div>
-  <div class="card text-center m-3 flex-grow-1">
+  <div class="card text-center m-3 flex-grow-1 activity">
     <div class="card-header">{{ this.activityInfo.title }}</div>
     <div class="card-body">
       <h5 class="card-title">{{ this.activityInfo.sport.name }}</h5>
@@ -21,12 +17,27 @@
       </p>
       <p class="card-text">
         <strong>Niveau : </strong>
-        <span class="badge rounded-pill bg-success" v-for="level in this.activityInfo.levels" v-bind:key="level.id"> {{level.level}}</span>
+        <span class="badge rounded-pill bg-success" v-for="level in this.activityInfo.levels" v-bind:key="level.id">{{ level.level }}</span>
       </p>
-      <button v-if="participant" @click="participation" class="btn btn-primary float-center">Participer</button>
-      <button v-if="!participant" @click="modifActivity" class="btn btn-primary float-start">Modifier</button>
-      <button v-if="!participant" @click="deleteActivity" class="btn btn-danger float-end">Supprimer</button>
-      <!-- <button v-if="!participant" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger float-end">Supprimer</button> -->
+      <!--Div pour pouvoir participer-->
+      <div v-if="participant && !userParticipe">
+        <button @click="addMyParticipation" class="btn btn-primary float-center" :disabled="userParticipe">Participer</button>
+        <select name="levels" id="levels" v-model="this.levelSelected" class="form-select m-1" required :disabled="userParticipe">
+          <option v-for="level in this.activityInfo.levels" :value="level.level" v-bind:key="level.id">{{ level.level }}</option>
+        </select>
+      </div>
+      <div v-else class="mb-3">
+        <p>Vous participez à cette activité.</p>
+        <button @click="removeMyParticipation" class="btn btn-danger"> Annuler ? </button>
+      </div>
+      <div v-if="!loading">
+        <p>Il y a déjà {{ this.activityInfo.participant_count }} participants !</p>
+      </div>
+      <!--Div pour modifier/supprimer l'activité-->
+      <div v-if="owner">
+        <button @click="modifActivity" class="btn btn-primary float-start">Modifier</button>
+        <button @click="deleteActivity" class="btn btn-danger float-end">Supprimer</button>
+      </div>
     </div>
     <div class="card-footer text-muted">{{ this.activityInfo.postcode }} / {{ this.activityInfo.address }}</div>
   </div>
@@ -34,35 +45,65 @@
 
 <script>
 import GestionActivities from "../services/activities.service.js";
+import GestionParticipations from "../services/participations.service.js";
 export default {
   name: "Activity",
   props: {
     activityInfo: Object,
-    participant: Boolean,
+    participant: {default: false, type: Boolean},
+    owner: {default: false, type: Boolean},
   },
   data() {
     return {
       id: this.activityInfo.id,
+      loading: false,
       error: null,
-      message: null
+      message: null,
+      levelSelected: null,
+      userParticipe: false
     }
+  },
+  computed: {
   },
   methods: {
     modifActivity() {
-      console.log(this.id)
       this.$router.push({ name: 'ActivityPage', params: { id: this.id }});
     },
     deleteActivity() {
-      console.log(this.id)
-      GestionActivities.deleteActivity(this.id).then((data) => {
-        this.message = data;
+      GestionActivities.deleteActivity(this.id).then(() => {
+        this.message = "L'activité a bien été supprimée.";
       }).catch((error) => {
         this.error = error;
       });
+    },
+    addMyParticipation() {
+      let reqData = {level: this.levelSelected, activity_id: this.activityInfo.id};
+      GestionParticipations.addMyParticipation(reqData).then(() => {
+        this.message = "Vous êtes bien inscrit à cette activité !";
+        this.userParticipe = true;
+      }).catch(() =>{
+        this.error = "Veuillez chosir votre niveau";
+      })
+    },
+    removeMyParticipation() {
+      GestionParticipations.removeMyParticipation(this.id).then(() => {
+        this.message = "Vous êtes bien désinscrit de cette activité !";
+        this.$forceUpdate();
+      }).catch((error) =>{
+        this.error = error;
+      });
     }
+  },
+  beforeMount() {
+
   }
 };
 </script>
-<style>
-
+<style scoped>
+.activity{
+  box-shadow: -3px 9px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: rgba(0, 0, 0, 0.25);
+  color: white;
+  margin: 2em;
+}
 </style>

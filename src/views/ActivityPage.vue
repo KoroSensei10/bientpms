@@ -1,7 +1,4 @@
 <template>
-    <div class="text-center text-white p-1 size-title color">
-        Modifier une Activité
-    </div>
     <form class="m-3 d-flex flex-column align-items-center flex-grow-1 padding" @submit.prevent="updateActivity">
         <div class="mb-3">
             <label for="titre" class="form-label"><h2>Titre</h2></label>
@@ -54,7 +51,7 @@
                 type="checkbox"
                 id="amateur"
                 value="amateur"
-                v-model="this.updatableData.levels"
+                v-model="this.updatableData.levels" 
                 />
                 <label class="form-check-label" for="amateur">amateur</label>
             </div>
@@ -64,7 +61,7 @@
                 type="checkbox"
                 id="intermédiaire"
                 value="intermédiaire"
-                v-model="this.updatableData.levels"
+                v-model="this.updatableData.levels" 
                 />
                 <label class="form-check-label" for="intermédiaire"
                 >intermédiaire</label
@@ -76,7 +73,7 @@
                 type="checkbox"
                 id="confirmé"
                 value="confirmé"
-                v-model="this.updatableData.levels"
+                v-model="this.updatableData.levels" 
                 />
                 <label class="form-check-label" for="confirmé">confirmé</label>
             </div>
@@ -86,7 +83,7 @@
                 type="checkbox"
                 id="expert"
                 value="expert"
-                v-model="this.updatableData.levels"
+                v-model="this.updatableData.levels" 
                 />
                 <label class="form-check-label" for="expert">expert</label>
             </div>
@@ -97,6 +94,12 @@
         <button type="submit" class="btn btn-primary">
             Modifier
         </button>
+        <intersecting-circles-spinner
+            v-if="loading"
+            :animation-duration="1200"
+            :size="70"
+            color="#ff1d5e"
+        />
     </form>
     <div v-if="this.message" class="alert alert-success" role="alert">
         L'activité a bien été modifiée !
@@ -112,8 +115,12 @@
 
 <script>
 import GestionActivities from "../services/activities.service.js";
+import { IntersectingCirclesSpinner } from 'epic-spinners'
 export default {
     name: "AcitityPage",
+    components: {
+        IntersectingCirclesSpinner
+    },
     data() {
         return {
             updatableData: {
@@ -155,6 +162,10 @@ export default {
                 this.loading = false;
                 this.error = error;
             })
+        },
+        eventChangeTitle(){
+            const data = {title: "Activité"};
+            this.$emit('updateTitleName', data);
         }
     },
     beforeCreate() {
@@ -177,6 +188,9 @@ export default {
             this.loading = false;
             this.error = error;
         });
+    },
+    mounted() {
+        this.eventChangeTitle();
     }
 }
 </script>

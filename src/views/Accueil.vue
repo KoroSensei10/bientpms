@@ -50,6 +50,12 @@
 </script>
 
 <style>
+#application{
+  /* padding-top: 0px!important; */
+  padding-bottom: 0px!important;
+  background-color: #fff;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
 .img {
     height: 250px;
@@ -80,6 +86,20 @@
 
 .container {
     margin-top: 30px;
+}
+
+.bottom-decoration {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0px;
+  width: 100%;
+  height: 200px;
+  max-height: 20vh;
+  background-image: linear-gradient(to right, #0084ff, #00f2ff);
+  overflow-y: hidden;
+  overflow-x: hidden;
+  z-index: -1000;
+  padding-bottom: 0px!important;
 }
 </style>
 
