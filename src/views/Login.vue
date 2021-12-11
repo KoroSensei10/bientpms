@@ -148,7 +148,7 @@ export default {
 }
 
 .logo {
-  max-width: 200px;
+  max-width: 130px;
 }
 
 /* logo mot de passe et utilisateur */
