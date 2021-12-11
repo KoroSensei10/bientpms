@@ -8,7 +8,7 @@ import UserActivities from '../views/UserActivities.vue'
 import CreateActivity from '../views/CreateActivity.vue'
 import ActivityPage from '../views/ActivityPage.vue'
 // import User from '../views/User.vue'
-// import Users from '../views/Users.vue'
+import Sportives from '../views/Sportives.vue'
 
 const routes = [{
         path: '/',
@@ -55,11 +55,11 @@ const routes = [{
     //     name: 'User',
     //     component: User
     // },
-    // {
-    //     paht: '/users',
-    //     name: 'Users',
-    //     component: Users
-    // },
+    {
+        paht: '/sportives',
+        name: 'Sportives',
+        component: Sportives
+    },
     {
         path: '/about',
         name: 'About',

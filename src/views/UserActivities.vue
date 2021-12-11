@@ -1,6 +1,5 @@
 <template>
     <div class="d-flex flex-column">
-        <h1>Page activités de l'user</h1>
         <div class="d-flex justify-content-center align-items-center">
             <h4>Filters : </h4>
             <div class="form-check form-switch">

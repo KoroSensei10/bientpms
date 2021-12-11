@@ -18,7 +18,7 @@
 
     <!-- Affiche la NavBar que quand la personne est loggedin -->
     <nav id="nav-bottom" v-if="isAuthenticated" class="navbar fixed-bottom navbar-light bg-light">
-      <VueBottomNavigation :color="this.color" badgeColor="#000000" :value="selected" :options="options" v-model="selected" />
+      <VueBottomNavigation :color="color" :badgeColor="color" :value="selected" :options="options" v-model="selected" />
     </nav>
   </div>
 </template>
@@ -55,7 +55,7 @@ export default {
             }
           ]
         },
-        { id: 3, icon: "fa fa-user", title: "Les gens", path: {name: "User"}},
+        { id: 3, icon: "fa fa-user", title: "Les gens", path: {name: "Sportives"}},
         // { id: 4, icon: "fa fa-bell", title: "Messages" },
       ],
   }),
@@ -91,8 +91,8 @@ body{
   overflow: auto;
   height: 100%;
   background-color: #fff;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin-bottom: 60px;
+  margin-top: 60px;
   padding-top: 10px;
   padding-bottom: 5px;
   box-sizing: border-box;
