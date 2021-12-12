@@ -20,6 +20,11 @@
         </div>
         <form class="d-flex flex-column align-self-center flex-grow-1" @submit.prevent="updateData">
             <div class="mb-3">
+                <label for="formFile" class="form-label">Nouvelle photo de profil ?</label>
+                <img :src="remoteUrl" style="width: 80px" class="rounded">
+                <input class="form-control" type="file" accept="image/*" id="formFile" @change="handleImage" :disabled="disableEdit">
+            </div>
+            <div class="mb-3">
                 <label for="about" class="form-label">Description</label>
                 <input type="text" name="about" id="about" v-model="this.updatableData.about"
                 minlength="0" maxlength="300" class="form-control" :disabled="disableEdit"/>
@@ -73,6 +78,8 @@ export default {
                 sign_up_data: ''
             },
             updatableData: {},
+            newImage: '',
+            remoteUrl: '',
             postcode: '',
             error: false,
             infoUpdated: false,
@@ -91,8 +98,45 @@ export default {
             this.$store.dispatch('logout');
             this.$router.push('/');
         },
+        handleImage(e) {
+            const selectedImage = e.target.files[0];
+            this.createBase64Image(selectedImage);
+        },
+        uploadImage() {
+            this.loading = true;
+            fetch('https://i.tpms.host/api/1/upload', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    key: 'c4118a8b942a7e4f1c89260c441e52eb', // ICI
+                    source: this.newImage
+                })
+            }).then((resp) => resp.json()).then(json => {
+                console.log(json);
+                this.remoteUrl = json.image.url;
+                this.loading = false;
+            }).catch((err) => {
+                this.message = err;
+                console.log(err);
+                this.loading = false;
+            })
+        },
+        createBase64Image(fileObject){
+            const oui = this;
+            var btoa = require('btoa')
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                oui.newImage = btoa(event.target.result);
+                oui.uploadImage()
+            };
+            reader.readAsBinaryString(fileObject);
+        },
         updateData() {
             this.loading = true;
+            this.updatableData.profile_picture = this.remoteUrl
             UserInformation.updateProfileInformation(this.updatableData).then((data) => {
                 this.updatableData = data;
                 this.infoUpdated = true;
@@ -115,6 +159,9 @@ export default {
         }
     },
     beforeMount() {
+        if (!this.isAuthenticated) {
+            this.logout;
+        }
         this.$store.dispatch('setBasicInformation').then((data) => {
             this.userInfo = data;
             UserInformation.getMoreInformation().then((info) => {

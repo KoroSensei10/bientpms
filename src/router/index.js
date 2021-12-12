@@ -21,6 +21,11 @@ const routes = [{
         component: Home
     },
     {
+        path: '/sportives',
+        name: 'Sportives',
+        component: Sportives
+    },
+    {
         path: '/userActivities',
         name: 'UserActivities',
         component: UserActivities
@@ -56,11 +61,6 @@ const routes = [{
     //     component: User
     // },
     {
-        paht: '/sportives',
-        name: 'Sportives',
-        component: Sportives
-    },
-    {
         path: '/about',
         name: 'About',
         // route level code-splitting
@@ -75,10 +75,10 @@ const router = createRouter({
     routes
 })
 
-// router.beforeEach((to, from, next) => {
-//     if (!router.app.$store.state.isAuthenticated) next({ name: 'Login' })
-//     else next()
-// })
+router.beforeEach((to, from, next) => {
+    if ((to.path !== 'Accueil' && to.path !== '/login' && to.path !== '/register' && to.path !== '/') && !localStorage.getItem('token')) next({ name: 'Login' })
+    else next()
+})
 
 
 export default router
