@@ -33,11 +33,9 @@
     </div>
   </div>
   </template>
-  </template>
 
-<script>
-import Activity from "../components/Activity.vue";
-import Profile from "../components/Profile.vue";
+<!-- <script>
+import Profil from "../components/Profil.vue";
 export default {
   name: "Athletic",
   components: {
@@ -95,8 +93,8 @@ export default {
     });
   },
 };
-</script>
-<style>
+</script>-->
+<style> 
 .color {
   background: linear-gradient(to right, #0084ff, #00f2ff);
 }
