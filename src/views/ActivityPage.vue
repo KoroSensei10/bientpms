@@ -13,10 +13,7 @@
                 required
             />
         </div>
-        <div class="mb-3">
-            <label for="sport" class="form-label">Sport</label>
-            <input type="text" name="sport" id="sport" v-model="this.activity.sport.name" disabled>
-        </div>
+
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <textarea
@@ -31,10 +28,7 @@
             >
             </textarea>
         </div>
-        <div class="mb-3">
-            <label for="date" class="form-label">Date</label>
-            <input type="text" name="date" id="date" :value="this.activity.event_date" disabled>
-        </div>
+
         <div class="mb-3">
             <div class="form-check form-check-inline">
                 <input
