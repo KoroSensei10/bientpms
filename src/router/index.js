@@ -20,11 +20,11 @@ const routes = [{
         name: 'Home',
         component: Home
     },
-    /*{
+    {
         path: '/sportives',
         name: 'Sportives',
         component: Sportives
-    }, */
+    },
     {
         path: '/userActivities',
         name: 'UserActivities',
