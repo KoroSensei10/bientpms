@@ -1,6 +1,6 @@
 <template>
   <perfect-scrollbar>
-    <form class="m-3 d-flex flex-column align-items-center padding" @submit.prevent="updateActivity">
+    <form class="m-3 pb-4 d-flex flex-column align-items-center padding" @submit.prevent="updateActivity">
         <div class="mb-3">
             <label for="titre" class="form-label"><h2>Titre</h2></label>
             <input
@@ -13,7 +13,7 @@
                 required
             />
         </div>
-        <div class="mb-3">
+        <div class="mb-3" hidden>
             <label for="sport" class="form-label">Sport</label>
             <input type="text" name="sport" id="sport" v-model="this.activity.sport.name" disabled>
         </div>
@@ -31,7 +31,7 @@
             >
             </textarea>
         </div>
-        <div class="mb-3">
+        <div class="mb-3" hidden>
             <label for="date" class="form-label">Date</label>
             <input type="text" name="date" id="date" :value="this.activity.event_date" disabled>
         </div>
