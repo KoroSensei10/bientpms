@@ -1,33 +1,4 @@
 <template>
-<!--  <div class="container mx-4 d-flex flex-row align-items-center mt-3 carte">-->
-<!--      <img class='rounded-circle' :src="this.profilInfo.account.profile_picture" style="width: 5rem; height: 5rem;" />-->
-
-<!--      <div class="d-flex flex-row justify-content-between align-items-start flex-grow-1">-->
-
-<!--          <div class="card border-0">-->
-<!--              <div class="card-body p-2">-->
-<!--                  <h5 class="card-title m-0">{{this.profilInfo.account.last_name}} {{this.profilInfo.account.first_name}}</h5>-->
-<!--                  <p class="card-text m-0 fw-light">{{this.profilInfo.account.birthday}}</p>-->
-
-<!--                  <p v-for="sport in this.profilInfo.sports" :key="sport.sport.id" class="card-text m-0 fw-light fst-italic">-->
-<!--                      {{sport.sport.name}} | {{ sport.level.level }}-->
-<!--                      </p>-->
-<!--              </div>-->
-<!--          </div>-->
-
-<!--          <div class="d-flex flex-column justify-content-around">-->
-<!--              <div class="d-flex flex-row justify-content-end align-items-start p-2 pb-0">-->
-<!--                  <i class="fal fa-map-marker-alt me-2"></i>-->
-<!--                  <p>{{this.profilInfo.account.postcode}}</p>-->
-<!--              </div>-->
-<!--          </div>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--          <button type="button" class="btn btn-primary" @click="pushToUserpage">-->
-<!--              En savoir plus-->
-<!--          </button>-->
-<!--      </div>-->
-<!--  </div>-->
   <div class="d-flex justify-content-center align-items-center m-3">
     <div class="card panic">
       <div class="user text-center">

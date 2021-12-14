@@ -15,18 +15,22 @@
           Chercher
         </button>
       </div>
+      <div class="d-flex flex-column flex-sm-row flex-wrap">
+        <ScalingSquaresSpinner class="align-self-center"
+                               v-if="loading"
+                               :animation-duration="2500"
+                               :rhombus-size="15"
+                               color="#ff1d5e"
+        />
+      </div>
+
       <div class="d-flex flex-column flex-sm-row flex-wrap pb-5" v-if="sportives">
+
         <Profil v-for="sportive in sportives" v-bind:key="sportive.account.last_name" :profilInfo="sportive"/>
       </div>
       <div v-if="error">
         {{ this.error }}
       </div>
-    <ScalingSquaresSpinner class="align-self-center"
-                             v-if="loading"
-                             :animation-duration="2500"
-                             :rhombus-size="15"
-                             color="#ff1d5e"
-    />
   </perfect-scrollbar>
 </template>
 
@@ -45,8 +49,8 @@
     data() {
       return {
         sportivesRequestInfo: {
-            me_excluded: false,
-            radius: 300
+            me_excluded: true,
+            radius: 50
         },
         min: 5,
         max: 300,
