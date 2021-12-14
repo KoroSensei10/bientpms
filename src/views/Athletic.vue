@@ -96,7 +96,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .color {
   background: linear-gradient(to right, #0084ff, #00f2ff);
 }

@@ -8,7 +8,7 @@ import UserActivities from '../views/UserActivities.vue'
 import CreateActivity from '../views/CreateActivity.vue'
 import ActivityPage from '../views/ActivityPage.vue'
 // import User from '../views/User.vue'
-import Sportives from '../views/Sportives.vue'
+// import Sportives from '../views/Sportives.vue'
 
 const routes = [{
         path: '/',
@@ -20,11 +20,11 @@ const routes = [{
         name: 'Home',
         component: Home
     },
-    {
+    /*{
         path: '/sportives',
         name: 'Sportives',
         component: Sportives
-    },
+    }, */
     {
         path: '/userActivities',
         name: 'UserActivities',

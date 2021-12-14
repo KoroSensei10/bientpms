@@ -1,83 +1,67 @@
-<template  class=".flex-lg-fill .d-flex .flex-row">
-  <div
-    class="
-      .container-fluid
-      .flex-xl-fill
-      .d-flex
-      .flex-row
-      .justify-content-center
-    "
-  >
-    <div
-      class="
-        in-container-fluid
-        .d-flex
-        .justify-content-center
-        .align-self-center
-      "
+<template>
+  <div class="flex-grow-1 d-flex flex-column">
+    <header class="myHed mt-3">
+      <p>Connexion</p>
+      <img src="/images/tpms.ico" alt="logo">
+    </header>
+    <!-- formulaire de connexion -->
+    <form
+      class="container flex-grow-1 d-flex flex-column justify-content-around mt-5"
+      name="loginForm"
+      @submit.prevent="login"
     >
-      <div class="form-group align-items-center d-flex flex-column align-self-center">
-        <!-- en-tête du formulaire -->
-        <header class="myHed .text-center">
-          <p>Se connecter</p>
-          <img class="logo" src="/images/logotpms.png" alt="logo" />
-        </header>
-        <!-- formulaire de connexion -->
-        <form
-          class="main-form .text-center d-flex flex-column"
-          name="loginForm"
-          @submit.prevent="login"
-        >
-          <div class="form-group my-0">
-            <label class="my-0">
-              <i class="fas fa-user"></i>
-              <input
-                v-model="this.user.username"
-                class="myInput"
-                type="text"
-                name="login"
-                id="login"
-                placeholder="E-mail/Nom d'utilisateur"
-                required
-              />
-            </label>
-          </div>
-          <div class="form-group my-0">
-            <label class="my-0">
-              <i class="fas fa-lock"></i>
-              <input
-                type="password"
-                class="myInput"
-                placeholder="Mot de Passe"
-                v-model="this.user.password"
-                required
-              />
-            </label>
-          </div>
-          <hr noshade="1" width="100%" size="" />
-          <div class="form-group mb-2">
-            <label>
-              <button class="form-control button" type="submit">
-                Se connecter
-              </button>
-            </label>
-          </div>
-          <span class="check_1"> <a href="">Mot de passe oublié ?</a></span>
-        </form>
-        <div v-if="authFail" class="alert alert-danger align-items-center" role="alert">
-          <strong>{{ this.message }}</strong>
-        </div>
-        <div v-if="loading" class="align-self-center">
-          <SemipolarSpinner
-          :animation-duration="2000"
-          :size="65"
-          color="#ff1d5e"
-        />
-        </div>
+      <div>
+        <label>
+          <i class="fas fa-user"></i>
+          <input
+            v-model="this.user.username"
+            class="myInput"
+            type="text"
+            name="login"
+            id="login"
+            placeholder="Identifiant"
+            required
+          />
+        </label>
+        <p class="text mt-2">Email ou pseudonyme.</p>
       </div>
+      <div>
+        <label>
+          <i class="fas fa-lock"></i>
+          <input
+              type="password"
+              class="myInput"
+              placeholder="Mot de Passe"
+              v-model="this.user.password"
+              required
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          <button class="form-control button" type="submit">
+            Se connecter
+          </button>
+        </label>
+      </div>
+      <span class="check_1">Mot de passe oublié ?</span>
+    </form>
+    <div v-if="authFail" class="alert alert-danger align-items-center" role="alert">
+      <strong>{{ this.message }}</strong>
+    </div>
+    <div v-if="loading" class="align-self-center">
+      <SemipolarSpinner
+      :animation-duration="2000"
+      :size="65"
+      color="#ff1d5e"
+    />
     </div>
   </div>
-  <div class="bottom-decoration"></div>
+  <footer class="wave">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#0099ff" fill-opacity="1" d="M0,96L80,117.3C160,139,320,181,480,165.3C640,149,800,75,960,48C1120,21,1280,43,1360,53.3L1440,64L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+    </svg>
+  </footer>
 </template>
 
 <script>
@@ -132,50 +116,18 @@ export default {
 };
 </script>
 
-<style>
-#application{
-  /* padding-top: 0px!important; */
-  padding-bottom: 0px!important;
-  background-color: #fff;
-}
+<style scoped>
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-
-.in-container {
-  min-height: 99%;
-  padding: none;
-  min-width: 100%;
-  width: 100%;
-}
-
-/* la partie "se connecter" + logo */
-
-.myHed {
-  margin-top: 10px;
-  font-size: 32px;
-  margin-bottom: 10px;
-  font-weight: 700;
-  background-image: linear-gradient(to right, #0084ff, #00f2ff);
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-.logo {
-  max-width: 130px;
-}
-
-/* logo mot de passe et utilisateur */
-
-.fas {
-  position: relative;
+input {
   display: block;
-  left: -87px;
-  top: 30px;
-  color: rgb(255, 255, 255);
+  text-align: center;
+  left: 50%;
 }
 
-/* le boutton "connexion" */
+.text {
+  font-size: 15px;
+  color: #746f6f;
+}
 
 .button {
   margin-top: 10px;
@@ -187,50 +139,5 @@ export default {
   cursor: pointer;
 }
 
-/* l'insertion du texte dans les cases*/
 
-.myInput {
-  width: 220px;
-  padding: 10px;
-  padding-left: 40px;
-  border-radius: 25px;
-  background-image: linear-gradient(to right, #0084ff, #00f2ff);
-  color: #fff;
-  border: none;
-  display: block;
-}
-
-.check_1 {
-  font-weight: 500;
-  color: rgb(85, 85, 85);
-  font-size: 12px;
-  margin: 15px auto;
-  cursor: pointer;
-}
-
-.bottom-decoration::after {
-  --round: 20vh;
-  content: "";
-  position: absolute;
-  left: -32px;
-  right: -32px;
-  top: calc(var(--round) / -2);
-  background: #fff;
-  height: var(--round);
-  border-radius: 0 0 50% 50%;
-}
-
-.bottom-decoration {
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 0px;
-  width: 100%;
-  height: 200px;
-  max-height: 20vh;
-  background-image: linear-gradient(to right, #0084ff, #00f2ff);
-  overflow-y: hidden;
-  overflow-x: hidden;
-  z-index: -1000;
-  padding-bottom: 0px!important;
-}
 </style>

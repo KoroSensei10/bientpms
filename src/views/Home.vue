@@ -1,14 +1,14 @@
 <template>
   <!-- barre de recherche -->
-  <div class="d-flex flex-column">
-    <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center" v-if="!loading">
-      <h4>Filtres : </h4>
-      <div class="form-group flex-grow-1 d-flex mb-3 justify-content-center align-items-center">
-        <label class="form-label flex-grow-1" for="">Code Postal</label>
-        <input class="form-control flex-grow-0" type="text" v-model="this.activitiesRequestInfo.postcode">
+  <perfect-scrollbar>
+    <div class="d-flex flex-column justify-content-center align-items-center pt-3" v-if="!loading">
+      <h4 class="fw-bold">Filtres : </h4>
+      <div class="d-flex mb-3 align-items-center">
+        <label class="form-label">Code Postal</label>
+        <input class="form-control" type="text" v-model="this.activitiesRequestInfo.postcode">
       </div>
-      <div class="d-flex mb-3 flex-grow-1 justify-content-center align-items-center">
-        <label class="form-label">Sport</label>
+      <div class="d-flex mb-3 justify-content-center justify-content-between align-items-center">
+        <label class="form-label px-3">Sport</label>
         <select class="form-select" aria-label="Select pour le sport" v-model="this.activitiesRequestInfo.sport_id">
           <option v-for="sport in this.sports" v-bind:key="sport.id" :value="sport.id">
             {{ sport.name }}
@@ -24,10 +24,11 @@
       :size="65"
       color="#ff1d5e"
     />
-    <div class="d-flex flex-column flex-wrap" v-if="activities">
-      <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity" :participant="true" />
+    <div class="d-flex flex-column flex-wrap padding" v-if="activities">
+
+        <Activity v-for="activity in activities" v-bind:key="activity.id" :activity-info="activity" :participant="true" />
     </div>
-  </div>
+  </perfect-scrollbar>
 </template>
 
 <script>
@@ -38,10 +39,11 @@ export default {
   name: "Home",
   components: {
     Activity,
-    ScalingSquaresSpinner
+    ScalingSquaresSpinner,
   },
   data() {
     return {
+
       activitiesRequestInfo: {
         postcode: "51100",
         offset: 0,
@@ -103,23 +105,8 @@ export default {
   }
 };
 </script>
-<style>
-.color {
-  background: linear-gradient(to right, #0084ff, #00f2ff);
-}
-
-.size-label {
-  font-size: calc(17px + 0.7vw);
-}
-.size-input {
-  font-size: calc(13px + 0.5vw);
-}
-.size-title {
-  font-size: calc(25px + 2vw);
-  font-family: Times New Roman;
-  font-weight: 700;
-}
-.size-retour {
-  font-size: 20px;
+<style scoped>
+.padding {
+  padding-bottom: 50px;
 }
 </style>

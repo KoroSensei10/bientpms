@@ -1,16 +1,17 @@
 <template>
-    <div class="d-flex flex-column justify-content-between">
-        <div class="haut mb-5 flex-grow-1">
-            <div class="gris_haut"></div> 
-            <button @click="disableEdit = !disableEdit" type="button" class="btn btn-outline-danger modifier">Edit</button>
-            <button v-on:click="logout" class="btn btn-outline-dark deconnexion">Logout</button>
+  <perfect-scrollbar>
+    <div class="d-flex flex-column justify-content-between padding">
+        <div class="haut mb-3">
+            <div class="gris_haut"></div>
+            <button @click="disableEdit = !disableEdit" type="button" class="btn  modifier m-3" :class="{'editing' : !disableEdit }">Edit</button>
+            <button v-on:click="logout" class="btn  deconnexion m-3 p-1">Logout</button>
             <div class="profil">{{ this.userInfo.username }}</div>
             <div class="avatar">
                 <img class="profile-picture" :src="this.updatableData.profile_picture" alt="profile picture">
             </div>
         </div>
         <div v-if="infoUpdated" class="alert alert-success align-self-center" role="alert">
-            Vos informations ont bien étaient mise à jour.
+            Vos informations ont bien été mise à jour.
         </div>
         <div v-if="error" class="alert alert-danger align-self-center" role="alert">
             {{ this.message }}
@@ -59,6 +60,7 @@
             color="#ff1d5e"
             />
     </div>
+  </perfect-scrollbar>
 </template>
 
 <script>
@@ -181,14 +183,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.padding {
+  padding-bottom: 100px;
+}
+
 .haut {
-    flex-basis: 0;
-    flex-grow: 3;
     display: grid;
     grid-template-columns: 25% 50% 25%;
     grid-template-rows: 1fr 1fr 1fr;
-    border-style: none;
     background: linear-gradient(to right, #0084ff, #00f2ff);
 }
 
@@ -205,33 +209,22 @@ export default {
     font-style: italic;
 }
 
-.sport {
-    flex-basis: 0;
-    flex-grow: 2;
-    text-align: center;
-    margin-right: 10px;
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    font-size: calc(16px + 0.5vw);
-}
-
 .modifier {
-    margin-left: 12%;
-    margin-top: 12%;
-    color: #FDFAFA;
+    color: #000000;
+    background-color: white;
     font-size: calc(10px + 1vw);
 }
 
+.editing {
+    background-color: red;
+    color: white;
+}
+
 .deconnexion {
+    color: #000000;
+    background-color: white;
     grid-row-start: 1;
     grid-column-end: 4;
-    text-align: end;
-    margin-right: 12%;
-    margin-top: 12%;
-    color: #FDFAFA;
     font-size: calc(10px + 1vw);
     cursor: pointer;
 }

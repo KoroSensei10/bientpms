@@ -1,8 +1,8 @@
 <template>
-  <div v-if="this.message" class="alert alert-success" role="alert">
+  <div v-if="this.message" class="alert alert-success mt-3" role="alert">
     {{ this.message }}
   </div>
-  <div v-if="this.error" class="alert alert-danger" role="alert">
+  <div v-if="this.error" class="alert alert-danger mt-3" role="alert">
     {{ this.error }}
   </div>
   <div class="card text-center m-3 flex-grow-1 activity">
@@ -17,12 +17,12 @@
       </p>
       <p class="card-text">
         <strong>Niveau : </strong>
-        <span class="badge rounded-pill bg-success" v-for="level in this.activityInfo.levels" v-bind:key="level.id">{{ level.level }}</span>
+        <span class="badge rounded-pill bg-success mx-1" v-for="level in this.activityInfo.levels" v-bind:key="level.id">{{ level.level }}</span>
       </p>
       <!--Div pour pouvoir participer-->
       <div v-if="participant && !userParticipe">
-        <button @click="addMyParticipation" class="btn btn-primary float-center" :disabled="userParticipe">Participer</button>
-        <select name="levels" id="levels" v-model="this.levelSelected" class="form-select m-1" required :disabled="userParticipe">
+        <button @click="addMyParticipation" class="btn btn-light float-center mt-1 mb-1" :disabled="userParticipe">Participer</button>
+        <select name="levels" id="levels" v-model="this.levelSelected" class="form-select mb-3 mt-3" required :disabled="userParticipe">
           <option v-for="level in this.activityInfo.levels" :value="level.level" v-bind:key="level.id">{{ level.level }}</option>
         </select>
       </div>
@@ -30,16 +30,15 @@
         <p>Vous participez à cette activité.</p>
         <button @click="removeMyParticipation" class="btn btn-danger"> Annuler ? </button>
       </div>
-      <div v-if="!loading">
-        <p>Il y a déjà {{ this.activityInfo.participant_count }} participants !</p>
-      </div>
+      <p v-if="!loading" class="pt-2">Il y a déjà {{ this.activityInfo.participant_count }} participants !</p>
+
       <!--Div pour modifier/supprimer l'activité-->
       <div v-if="owner">
         <button @click="modifActivity" class="btn btn-primary float-start">Modifier</button>
         <button @click="deleteActivity" class="btn btn-danger float-end">Supprimer</button>
       </div>
     </div>
-    <div class="card-footer text-muted">{{ this.activityInfo.postcode }} / {{ this.activityInfo.address }}</div>
+    <div class="card-footer text-light">{{ this.activityInfo.postcode }} - {{ this.activityInfo.address }}</div>
   </div>
 </template>
 
@@ -102,7 +101,7 @@ export default {
 <style scoped>
 .activity{
   box-shadow: -3px 9px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgb(74, 152, 255);
   color: white;
   margin: 2em;
 }

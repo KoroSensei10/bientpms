@@ -1,105 +1,84 @@
-<template class="w-100 h-100">
-  <div
-    class="
-      container
-      w-100
-      h-100
-      p-3
-      .d-flex
-      .flex-column
-      .justify-content-between
-    "
-  >
-    <div id="logo">
-      <img src="/images/tpms.ico" alt="logo" />
-    </div>
-    <div class="m-3 flex-grow-1">
-      <p class="citation">
-        Tomber à été inventé pour se relever. Malheur à ceux qui ne tombent
-        jamais.
-      </p>
-    </div>
-    <div id="boutons">
-      <button
-        type="button"
-        class="btn btn-outline-primary btn-lg mx-auto .d-block"
-      >
-        <router-link to="/login">Se connecter</router-link>
-      </button>
-      <p></p>
-      <hr align="right" width="100%" size="4" noshade />
-      <p></p>
-      <button
-        type="button"
-        class="btn btn-outline-success btn-lg mx-auto .d-block"
-      >
-        <router-link to="/register">S'inscrire</router-link>
-      </button>
-      <hr noshade="1" width="100%" size="">
-      <hr noshade="1" width="100%" size="">
-      <footer class="container .pt-5 .text-center">
-        <a href="">Conditions générales d'utilisation</a>
-      </footer>
-    </div>
+<template>
+  <div id="logo" class="mt-5">
+
+    <img src="/images/tpms.ico" alt="logo" />
+    <p class="title mt-5">Bienvenue</p>
   </div>
-  <div class="bottom-decoration"></div>
+  <div class="mx-4">
+    <p class="citation">
+      Rencontrez des sportifs, organisez des activités,
+      et trouvez votre prochaine passion.
+      <br>
+      Le monde du sport n'attends que vous!
+    </p>
+  </div>
+
+  <router-link
+      to="/login"
+      v-slot="{href, navigate}">
+    <button
+        type="button"
+        :href="href" @click="navigate"
+        class="btn btn-outline-primary btn-lg mx-auto">
+      Se connecter
+    </button>
+  </router-link>
+  <router-link
+      to="/register"
+      v-slot="{href, navigate}">
+      <button
+          type="button"
+          class="btn btn-outline-success btn-lg mx-auto"
+          :href="href" @click="navigate">
+        S'inscrire
+      </button>
+    </router-link>
+
+  <div class="mx-3">
+    En vous inscrivant vous acceptez nos
+    <br>
+    <a href="">Conditions générales d'utilisation</a>
+  </div>
+  <footer class="wave">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#0099ff" fill-opacity="1" d="M0,96L80,117.3C160,139,320,181,480,165.3C640,149,800,75,960,48C1120,21,1280,43,1360,53.3L1440,64L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+    </svg>
+  </footer>
 </template>
 
 <script>
 
 </script>
 
-<style>
-#application{
-  /* padding-top: 0px!important; */
-  padding-bottom: 0px!important;
-  background-color: #fff;
-}
+<style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
-.img {
-    height: 250px;
-    width: auto;
+
+button {
+  width: 60vw;
 }
 
-@media (max-width: 725px) {
-    .img {
-        height: 30vw;
-        width: auto;
-    }
+button:hover a {
+  color:white;
 }
 
 .citation {
-    font-family: 'Rubik', sans-serif;
-    font-style: italic;
-    font-size: 1em;
+  font-family: 'Rubik', sans-serif;
+  font-style: italic;
+  font-size: 1em;
 }
 
-.buttons {
-    width: 50vw;
-    border-radius: 25px;
-}
+.title {
 
-.p {
-    text-align: center;
-}
-
-.container {
-    margin-top: 30px;
-}
-
-.bottom-decoration {
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 0px;
-  width: 100%;
-  height: 200px;
-  max-height: 20vh;
+  font-size: 40px;
+  margin-bottom: 10px;
+  font-weight: 900;
   background-image: linear-gradient(to right, #0084ff, #00f2ff);
-  overflow-y: hidden;
-  overflow-x: hidden;
-  z-index: -1000;
-  padding-bottom: 0px!important;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
 }
+
+
 </style>
 
