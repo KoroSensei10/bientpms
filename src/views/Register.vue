@@ -245,6 +245,7 @@ export default {
       AuthService.register(data)
         .then(() => {
           this.inscriptionValide = true;
+          this.loading = false;
         })
         .catch((error) => {
           // sinon indique qu'il y a eu une erreur
