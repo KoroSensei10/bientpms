@@ -1,5 +1,5 @@
 <template>
-    <div class="container d-flex flex-row align-items-center mt-3">
+    <div class="container d-flex flex-row align-items-center mt-3 carte">
         <img class='rounded-circle' :src="this.profilInfo.account.profile_picture" style="width: 5rem; height: 5rem;" />
 
         <div class="d-flex flex-row justify-content-between align-items-start flex-grow-1">
@@ -10,7 +10,7 @@
                     <p class="card-text m-0 fw-light">{{this.profilInfo.account.birthday}}</p>
 
                     <p v-for="sport in this.profilInfo.sports" :key="sport.sport.id" class="card-text m-0 fw-light fst-italic">
-                        {{sport.sport.name}} {{ sport.level.level }}
+                        {{sport.sport.name}} | {{ sport.level.level }}
                         </p>
                 </div>
             </div>
@@ -20,9 +20,7 @@
                     <i class="fal fa-map-marker-alt me-2"></i>
                     <p>{{this.profilInfo.account.postcode}}</p>
                 </div>
-                <button type="button" class="badge rounded-pill color border-0">
-                    <div class="text-light text-center p-1">{{this.profilInfo.account.about}}</div>
-                </button>
+                <div class="text-light text-center p-1 badge rounded-pill color border-0">{{this.profilInfo.account.about}}</div>
             </div>
         </div>
     </div>
@@ -45,5 +43,7 @@ export default {
 
 </script>
 <style>
-
+.carte{
+    box-shadow: -3px 9px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
 </style>
