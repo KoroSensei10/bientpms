@@ -7,7 +7,7 @@ import Home from '../views/Home.vue'
 import UserActivities from '../views/UserActivities.vue'
 import CreateActivity from '../views/CreateActivity.vue'
 import ActivityPage from '../views/ActivityPage.vue'
-// import User from '../views/User.vue'
+import User from '../views/User.vue'
 import Sportives from '../views/Sportives.vue'
 
 const routes = [{
@@ -55,11 +55,11 @@ const routes = [{
         name: 'Profile',
         component: Profile
     },
-    // {
-    //     path: '/user/:username',
-    //     name: 'User',
-    //     component: User
-    // },
+    {
+        path: '/user/:username',
+        name: 'User',
+        component: User
+    },
     {
         path: '/about',
         name: 'About',

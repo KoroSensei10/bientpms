@@ -23,6 +23,11 @@
                 <div class="text-light text-center p-1 badge rounded-pill color border-0">{{this.profilInfo.account.about}}</div>
             </div>
         </div>
+        <div>
+            <button type="button" class="btn btn-primary" @click="pushToUserpage">
+                En savoir plus
+            </button>
+        </div>
     </div>
 </template>
 
@@ -31,6 +36,11 @@ export default {
     name: "Profil",
     props: {
         profilInfo: Object
+    },
+    methods: {
+        pushToUserpage() {
+            this.$router.push({ name: 'User', params: { username: this.profilInfo.account.owner_username }});
+        }
     }
 }
 // function getAge(date) { 

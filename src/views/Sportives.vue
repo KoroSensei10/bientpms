@@ -16,7 +16,7 @@
       </button>
     </div>
     <div class="d-flex flex-column flex-sm-row flex-wrap" v-if="sportives">
-      <Profil v-for="sportive in sportives" v-bind:key="sportive.account" :profilInfo="sportive"/>
+      <Profil v-for="sportive in sportives" v-bind:key="sportive.account.last_name" :profilInfo="sportive"/>
     </div>
     <div v-if="error">
       {{ this.error }}
