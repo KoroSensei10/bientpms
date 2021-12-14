@@ -28,7 +28,7 @@
       </div>
       <div v-else class="mb-3">
         <p>Vous participez à cette activité.</p>
-        <button @click="removeMyParticipation" class="btn btn-danger"> Annuler ? </button>
+        <button v-if="!owner" @click="removeMyParticipation" class="btn btn-danger"> Annuler ? </button>
       </div>
       <div v-if="!loading">
         <p>Il y a déjà {{ this.activityInfo.participant_count }} participants !</p>
