@@ -1,5 +1,6 @@
 <template>
-    <form class="m-3 d-flex flex-column align-items-center flex-grow-1 padding" @submit.prevent="updateActivity">
+  <perfect-scrollbar>
+    <form class="m-3 d-flex flex-column align-items-center padding" @submit.prevent="updateActivity">
         <div class="mb-3">
             <label for="titre" class="form-label"><h2>Titre</h2></label>
             <input
@@ -111,6 +112,7 @@
         <p>Il y a {{this.activity.participants.length}} participants</p>
         <p v-for="participant in this.activity.participants" v-bind:key="participant.user.id">{{ participant.user.username }}</p>
     </div>
+  </perfect-scrollbar>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <form class="m-3 flex-grow-1 padding d-flex flex-column align-items-center" @submit.prevent="createActivity">
+  <perfect-scrollbar>
+    <form class="m-3 padding" @submit.prevent="createActivity">
       <div class="mb-3">
         <label for="titre" class="form-label">Titre</label>
         <input
@@ -148,7 +148,7 @@
         <input class="form-control" type="file" id="imageFile" />
       </div> -->
 
-      <div class="d-flex justify-content-center mt-5">
+      <div class="d-flex justify-content-center mt-1">
         <button type="submit" class="btn btn-primary" :disabled="loading">
           Créer cette activité
         </button>
@@ -159,15 +159,16 @@
         :size="65"
         color="#ff1d5e"
       />
+      <div v-if="this.message" class="alert alert-success mt-3" role="alert">
+        L'activité a bien été créée !
+      </div>
+      <div v-if="this.error" class="alert alert-danger mt-3" role="alert">
+        {{ this.error }}
+      </div>
     </form>
     
-    <div v-if="this.message" class="alert alert-success" role="alert">
-      L'activité a bien été créée !
-    </div>
-    <div v-if="this.error" class="alert alert-danger" role="alert">
-      {{ this.error }}
-    </div>
-  </div>
+
+  </perfect-scrollbar>
 </template>
 
 <script>
@@ -254,18 +255,7 @@ div i {
   font-size: 30px;
 }
 
-.color {
-  background: linear-gradient(to right, #0084ff, #00f2ff);
-}
-.size-label {
-  font-size: calc(17px + 0.7vw);
-}
-.size-input {
-  font-size: calc(13px + 0.5vw);
-}
-.size-title {
-  font-size: calc(25px + 2vw);
-  font-family: Times New Roman;
-  font-weight: 700;
+.padding {
+  padding-bottom: 80px;
 }
 </style>
