@@ -158,21 +158,19 @@
         <router-link class="check_1" to="/login"
           >Déjà un compte ?
       </router-link>
-      <div class="spinner-border text-info" v-if="loading" role="status">
-          <span class="visually-hidden">Loading...</span>
-      </div>
+        <SemipolarSpinner class="align-self-center"
+                          v-if="loading"
+                          :animation-duration="2000"
+                          :size="65"
+                          color="#ff1d5e"
+        />
       </form>
       <div>
         {{ this.message }}
       </div>
     </div>
 
-    <SemipolarSpinner class="align-self-center"
-          v-if="loading"
-          :animation-duration="2000"
-          :size="65"
-          color="#ff1d5e"
-        />
+
 
     <div v-if="inscriptionValide" class="alert alert-success align-self-center" role="alert">
         Vous vous êtes bien inscrit, mais vous devez vérifier votre email avant de pouvoir vous connecter.

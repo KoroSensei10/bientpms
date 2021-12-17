@@ -46,8 +46,7 @@ export default {
 
       activitiesRequestInfo: {
         postcode: "51100",
-        offset: 0,
-        limit: 10,
+        offset: 0
       },
       activities: null,
       message: null,
